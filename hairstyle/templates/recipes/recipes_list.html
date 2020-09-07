@@ -1,0 +1,114 @@
+{% extends "barbershop/base_generic.html" %}
+
+
+{% block title %}Recipes{% endblock %}
+
+{% block content %}
+
+    <style>
+
+        li {
+            list-style-type: none;
+        }
+
+
+
+        #recipe {
+            color: black;
+            background-color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+    </style>
+    <div class="row">
+        <div class="col-sm-9">
+
+            <div class="main mt-5">
+
+                <form class="form-inline" method="GET" action="{% url 'hairstyle:search_recipes' %}">
+                    <input name="q" value="{{ request.GET.q }}" class="form-control mr-sm-2" type="search"
+                           placeholder="Enter title.." aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+
+
+                <br>
+                <h1>{% if category %}{{ category.name }}{% else %} Recipes {% endif %}</h1><br>
+                {% if result %}
+                    <p>{{ count }} results for {{ query }}</p>
+                    {% for res in result %}
+                        <p><a href="{{ res.get_absolute_url }}">{{ res.title }}</a></p><br>
+                        <img class="img-thumbnail" src="{{ res.image.url }}"><br>
+                    {% endfor %}
+                {% endif %}
+
+                {% for rec in recipes %}
+                    <div class="row" id="recipe">
+                        <div class="col-sm-6">
+                            <p style="font-size: 25px"><strong>{{ rec.title }}</strong></p>
+
+                            <p>{{ rec.description|truncatechars:100 }}<a href="{{ rec.get_absolute_url }}">Read more</a>
+                            </p>
+                            <p><strong>Amount of calories: {{ rec.calories }}</strong></p>
+                            <p>Protein: {{ rec.protein }}</p>
+                            <p>Carbohydrates: {{ rec.carbohydrates }}</p>
+                            <p>Fat: {{ rec.fat }}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <img class="img-thumbnail"
+                                 src="{% if rec.image %}{{ rec.image.url }}{% else %}Sos{% endif %}"><br>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {{ r }}
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item disabled">
+                            <a class="pagination-action" href="?page=1">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                            </a>
+                            <a class="pagination-action" href="?page={{ page_obj.previous_page_number }}">
+                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    <span class="pagination-current">{{ page_obj.number }}</span>
+                    <span class="pagination-of">of</span>
+                    <span class="pagination-total">{{ page_obj.paginator.num_pages }}</span>
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="pagination-action" href="?page={{ page_obj.next_page_number }}">
+                                <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+                            <a class="pagination-action" href="?page={{ page_obj.paginator.num_pages }}">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                        </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="sidebar mt-5 ">
+                <ul>
+                    <li {% if not category %}{% endif %}>
+                        <a class="text-white" href="{% url 'hairstyle:recipes_list' %}">All</a>
+                    </li>
+
+                    <hr>
+                    {% for cat in categories %}
+                        <li {% if cat.slug == categoru.slug %}{% endif %}>
+                            <a class="text-white" href="{% url 'hairstyle:recipes_by' cat.slug %}">{{ cat.name }}</a>
+                        </li>
+                        <hr>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

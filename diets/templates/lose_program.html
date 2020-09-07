@@ -1,0 +1,87 @@
+{% extends 'barbershop/base_generic.html' %}
+
+
+{% block title %}Program Lose Weight{% endblock %}
+
+{% block  content %}
+    <div class="container mt-4">
+        <div class="program-title">Lose Weight</div>
+        <div class="program-description">Lose WeightLose WeightLose WeightLose WeightLose WeightLose WeightLose Weight
+        </div>
+        <div class="d-sm-flex justify-content-sm-around">
+            <div class="p-2" style="background-color: #B9B9B9">
+                <div class="breakfast-title">Breakfast</div>
+                <div class="breakfast-wrap">
+                    <p>{{ amount_of_fat_for_breakfast }}</p>
+                    <p>{{ amount_of_protein_for_breakfast }}</p>
+                    <p>{{ amount_of_carbs_for_breakfast }}</p>
+                </div>
+            </div>
+            <div class="p-2">
+                <div class="lunch-title">Lunch</div>
+                <div class="lunch-wrap">
+                    <p>{{ amount_of_fat_for_lunch }}</p>
+                    <p>{{ amount_of_protein_for_lunch }}</p>
+                    <p>{{ amount_of_carbs_for_lunch }}</p>
+                </div>
+            </div>
+            <div class="p-2" style="background-color: #B9B9B9">
+                <div class="dinner-title">Dinner</div>
+
+            </div>
+
+
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            {% if is_subscribe %}
+                <p>You have been already subscribe, you can check this -> <a href="{% url 'diets:my_program' %}">settings
+                    diet</a></p>
+            {% else %}
+                <input type="submit" class="btn btn-success" value="Subscribe">
+            {% endif %}
+        </form>
+    </div>
+    <div class="container">
+    <h1 class="text-center">Recommendations recipes:</h1>
+
+    <hr>
+    </div>
+    <h2>{{ value }}</h2>
+    <div class="container">
+        <div class="program-title">Lose Weight</div>
+        <div class="description">
+            <p>{{ breakfast_calories }}</p>
+            <p>{{ lunch_calories }}</p>
+            <p>{{ dinner_calories }}</p>
+            <hr>
+            <p>Pro for br:{{ amount_of_protein }}</p>
+            <p>Carbs for br: {{ amount_of_carbs }}</p>
+            <p>Fat for br:{{ amount_of_fat }}</p>
+            <hr>
+            {% if lunch_calories > 1000 %}
+                <p>More then 1k</p>
+            {% else %}
+                <p>Less then 1k</p>
+            {% endif %}
+            <div class="breakfast">
+                <h2>BREAKFAST:</h2>
+                {% for b in breakfast_recipes %}
+                    <p>{{ b.title }}</p>
+                {% endfor %}
+            </div>
+            <div class="dinner">
+                <h2>DINNER: </h2>
+                {% for d in dinner_recipes %}
+                    <p>{{ d.title }}</p>
+                {% endfor %}
+            </div>
+            <div class="lunch">
+                <h2>LUNCH: </h2>
+                {% for l in lunch_recipes %}
+                    <p>{{ l.title }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

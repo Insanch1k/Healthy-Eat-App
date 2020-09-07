@@ -1,0 +1,63 @@
+{% extends 'barbershop/base_generic.html' %}
+
+
+<style>
+
+</style>
+
+{% block content %}
+
+    <div class="row">
+    <div class="container-fluid text-white">
+    {% if messages %}
+        <ul class="messages mt-5">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="{% url 'hairstyle:edit' %}" class="close">x</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+    <div class="col-4">
+
+    </div>
+    <div class="col-4 mt-5 text-center">
+
+        <div>
+            <h2>Edit your profile:</h2>
+            <form action="." method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>USERNAME:</label>
+                    {{ user_form.username }}
+                </div>
+                <div class="form-group">
+                    <label>FIRST NAME:</label>
+                    {{ user_form.first_name }}
+                </div>
+                <div class="form-group">
+                    <label>EMAIL:</label>
+                    {{ user_form.email }}
+                </div>
+                <div class="form-group">
+                    <label>LAST NAME:</label>
+                    {{ user_form.last_name }}
+                </div>
+                <div class="form-group">
+                    <label>PHONE:</label>
+                    {{ profile_form.phone }}
+                </div>
+                <input type="submit" value="CHANGE" class="btn btn-success"><br>
+                <a class="btn btn-small mt-4" href="{% url 'password_change' %}">Change your password</a>
+            </form>
+
+        </div>
+        <div class="col-4">
+
+        </div>
+
+    </div>
+    </div>
+{% endblock %}

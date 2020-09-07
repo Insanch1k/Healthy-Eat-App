@@ -1,0 +1,190 @@
+{% extends "barbershop/base_generic.html" %}
+
+{% block title %}
+    Calculator
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <style>
+        .content-container {
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .form-container {
+
+            padding: 20px;
+
+        }
+
+        .input-group {
+            padding: 10px;
+
+        }
+
+        .form-check {
+            padding: 10px;
+        }
+
+        #activity {
+        }
+
+        #calculate {
+
+            padding: 10px;
+        }
+
+        #content {
+            border-radius: 10px;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .form-calculator {
+            border-radius: 10px;
+            background-color: white;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .image {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .title {
+            text-align: center;
+            font-weight: 900;
+            font-size: 35px;
+            color: white;
+            text-shadow: 2px 2px black;
+            margin-top: 20px
+        }
+
+    </style>
+
+    <div class="content-container row">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="form-container col-sm-8">
+            <div id="content">
+                <h2>How Many Calories Do I Burn in a Day?</h2>
+                <h3>Burning calories</h3>
+                <p>
+                    Every day, you burn calories when you move around, exercise, and go about your daily tasks.
+                    Your body even burns calories at rest, through basic functions like:
+                </p>
+                <ul>
+                    <li>breathing;</li>
+                    <li>circulating blood;</li>
+                    <li>cell processes;</li>
+                </ul>
+                <p>
+                    Ever wondered how many calories you burn each day? The Harris-Benedict formula can help you figure
+                    this out.
+
+                    This formula calculates your basal metabolic rate (BMR), which is the number of calories your body
+                    needs to function at rest.
+
+                    With one more calculation, you can work out how many calories you need each day to maintain your
+                    current weight. Eating fewer calories than this will result in weight loss.
+
+                    It is important to note that while calorie intake and exercise are an important part of weight loss,
+                    hormones and metabolism also play a major role.
+                </p>
+                <div class="image">
+                    <img class="img-thumbnail" src="https://ak.picdn.net/shutterstock/videos/5428283/thumb/1.jpg">
+                </div>
+                <h2>How do you calculate calories burned?</h2>
+                <p>
+                    The Harris-Benedict formula, or Harris-Benedict equation, lets you work out how many calories you
+                    need to eat per day. The formula is adjusted based on your sex, age, and weight to give a
+                    personalized answer.
+
+                    This equation was first published in 1918. Researchers then revisited the calculation in 1984 and
+                    again in 1990 to improve its accuracy.
+
+                    Once you work out your BMR, you can multiply this figure by a measure of your daily activity level —
+                    ranging from sedentary to extra active — to find out the number of calories you need to consume each
+                    day to maintain your weight.
+
+                    The next sections will tell you how to do these calculations. If you’re looking for a quick answer,
+                    you can get an online calculator to do the legwork for you.
+                </p>
+
+            </div>
+            <div class="title">CALCULATOR</div>
+            <div data-aos="fade-up" class="form-calculator">
+                <form method="POST">
+
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">AGE:</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1"
+                               placeholder="age.." name="age">
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="inlineRadio1"
+                               value="Man" checked>
+                        <label class="form-check-label" for="inlineRadio1">Man</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="inlineRadio2"
+                               value="Woman">
+                        <label class="form-check-label" for="inlineRadio2">Woman</label>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">HEIGHT:</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1"
+                               placeholder="height..." name="height" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">WEIGHT:</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1"
+                               placeholder="weight..." name="weight" step="0.1">
+                    </div>
+                    <label for="activity">PHYSICAL ACTIVITY PER DAY:</label>
+                    <select name="drop" id="activity" class="form-control">
+                        <option value="1.9">Hard exercise 2 or more times per day, or training for marathon, or
+                            triathlon, etc.
+                        </option>
+                        <option value="1.725">Very activity (hard exercise every day, or exercising 2 xs/day)</option>
+                        <option value="1.55">Middle activity (moderate exercise/ sports 6-7 days/week)</option>
+                        <option value="1.375">Low activity (light exercise/ sports 1-3 days/week)</option>
+                        <option value="1.2">No activity (little or no exercise, desk job)</option>
+                    </select>
+                    <div class="calculate text-center mt-2">
+                        <input id="calculate" type="submit" value="CALCULATE" class="btn btn-success">
+                    </div>
+                    <h2>Enter amount for meals to program be able to calculate diet</h2>
+                    <div class="form-group">
+                        <label for="amount_breakfast">AMOUNT OF BREAKFASTS</label>
+                        <select class="form-control" id="amount_breakfast" name="num_breakfast">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                    <div class="form_group">
+                        <label for="amount_lunch">AMOUNT OF LUNCH</label>
+                        <select class="form-control" id="amount_lunch" name="num_lunch">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+{% endblock %}

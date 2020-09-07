@@ -1,0 +1,42 @@
+{% extends 'barbershop/base_generic.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    <style>
+        .title-delete {
+            font-size: 35px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px gray;
+        }
+
+        .confirm-delete {
+            background-color: #cccccc;
+            padding: 20px;
+            opacity: 0.8;
+            border-radius: 5px;
+        }
+
+        .inputs {
+            text-align: center;
+        }
+    </style>
+    <div class="container mt-5">
+        <div class="confirm-delete">
+            <div class="title-delete">
+                Are you sure you want to delete?
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="inputs">
+                    <input class="btn btn-danger" type="submit" value="Yes">
+                    <a class="btn btn-success ml-1" href="{% url 'diets:weight' %}">Cancel</a><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

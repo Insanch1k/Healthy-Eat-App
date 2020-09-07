@@ -1,0 +1,136 @@
+{% extends 'barbershop/base_generic.html' %}
+q
+{% block title %}My program{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <style>
+        #container {
+            padding: 20px;
+        }
+
+        #diet {
+            background-color: white;
+            padding: 15px;
+        }
+
+        #bottom_nav {
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #breakfast {
+            background-color: white;
+            width: 350px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #lunch {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+            width: 350px;
+        }
+
+        #dinner {
+            background-color: white;
+            width: 350px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #meals {
+            padding: 10px;
+        }
+
+        .program_title {
+            font-weight: 900;
+            color: white;
+            font-style: normal;
+            font-size: 39px;
+            text-shadow: 3px 3px gray;
+        }
+
+        .program_description {
+            margin-top: 30px;
+            font-size: 20px;
+            color: gray;
+            font-style: italic;
+        }
+        .description_title{
+            font-weight: 900;
+            color: white;
+            font-style: normal;
+            font-size: 30px;
+            text-shadow: 3px 3px gray;
+        }
+
+
+    </style>
+    <p>My program</p>
+    <p>{{ time }}</p>
+    <p>{{ time1 }}</p>
+
+
+    <div id="container" class="container">
+        <div class="container text-center" id="description">
+            <div class="program_title">
+                {{ my_diet.title }}
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <input class="btn btn-success" type="submit" value="Unsubscribe">
+            </form>
+            <div class="program_description">
+                <div class="description_title">
+                   DESCRIPTION
+                </div>
+                 {{ my_diet.description_of_diet }}
+            </div>
+        </div>
+        <div class="container" id="meals">
+            <div class="d-sm-flex flex-row justify-content-between">
+                <div class="p-2" id="breakfast">
+                    <h2 class="title text-center">BREAKFAST<small> at {{ my_diet.breakfast_time }}</small></h2>
+                    {% for b in my_diet.breakfast.all %}
+                        <a href="{{ b.get_absolute_url }}">{{ b.title }}</a>
+                        <p>{{ b.calories }}</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+                <div class="p-2" id="lunch">
+                    <h2 class="title text-center">LUNCH<small> at {{ my_diet.lunch_time }}</small></h2>
+                    {% for l in my_diet.lunch.all %}
+                        <a href="{{ l.get_absolute_url }}">{{ l.title }}</a>
+                        <p>{{ l.calories }}</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+                <div class=" p-2" id="dinner">
+                    <h2 class="title text-center">DINNER<small> at {{ my_diet.dinner_time }}</small></h2>
+                    {% for d in my_diet.dinner.all %}
+                        <a href="{{ d.get_absolute_url }}">{{ d.title }}</a>
+                        <p>{{ d.calories }}</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="diet" class="container mt-5">
+                <div class="container text-center" id="bottom_nav">
+                    <a href="{% url 'diets:settings' %}" class="mr-4">SETTINGS</a>
+                    <a href="#">CALENDAR</a>
+                    <a href="#" class="ml-4">INFORMATION</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block scripts %}
+
+        <script>
+            console.log("working")
+
+        </script>
+    {% endblock %}
+{% endblock %}

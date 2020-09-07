@@ -1,0 +1,87 @@
+{% extends "barbershop/base_generic.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    {% load embed_video_tags %}
+    {% load crispy_forms_tags %}
+    <style>
+        #detail-view {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            color: black;
+            font-family: "Lohit Devanagari";
+            margin-top: 30px;
+        }
+
+        #date {
+            opacity: 0.5;
+            font-size: 10px;
+        }
+
+        .info {
+            opacity: 0.6;
+        }
+        .input{
+            text-align: center;
+        }
+    </style>
+    <div class="container" id="detail-view">
+        <p><a href="{% url 'news:main' %}"><i class="fas fa-backward mr-1"></i>Back to posts</a></p>
+        <p>
+        <h2>{{ post.title }}</h2></p>
+        <div class="info">
+            <i class="fas fa-user mr-2"></i>{{ post.author }}<br>
+            <i class="fas fa-calendar-alt mr-2"></i>{{ post.created }}<br>
+            <i class="fas fa-comment mr-2"></i>{{ post.comments.count }}
+        </div>
+        <p class="mt-5">{{ post.body }}</p>
+        {% if post.video %}
+            <div class="embed-responsive embed-responsive-21by9">
+                {% video post.video "small" %}
+            </div>
+        {% endif %}
+        <div class="mt-5">
+            <h3>{{ post.comments.count }} Comments</h3>
+            {% for c in comments %}
+
+                <p id="owner" class="mt-5"><i class="fas fa-user mr-2"></i>{{ c.owner }}</p>
+                <p id="date"><i class="fas fa-calendar-alt mr-2"></i>{{ c.created }}</p>
+                <hr>
+                <p class="mt-2">{{ c.body }}</p>
+
+            {% empty %}
+                <p>No comments yet</p>
+            {% endfor %}
+
+            <div>
+                {% if user.is_authenticated %}
+                    {% if new_comment %}
+                        <h2>Added</h2>
+                    {% else %}
+                        <div class="form-group">
+                            <h2>Add new comment</h2>
+                            <form action="" method="POST">
+                                <div class="form-group">
+                                    <label>Body:</label>
+                                    {{ comment_form.body }}
+                                </div>
+                                {% csrf_token %}
+                                <div class="input">
+                                    <input class="btn btn-success" type="submit"
+                                           value="Add your comment"></div>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <p>If want to leave a comment you have to <a href="{% url 'login' %}">login</a></p>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

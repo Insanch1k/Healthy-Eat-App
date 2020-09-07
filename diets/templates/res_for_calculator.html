@@ -1,0 +1,101 @@
+{% extends "barbershop/base_generic.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <style>
+        .container {
+            background-color: aliceblue;
+            margin-top: 30px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .result {
+            background-color: #30BF61;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            font-size: 23px;
+            margin-bottom: 40px;
+        }
+
+        table {
+            color: white;
+        }
+    </style>
+    <div class="col-2">
+
+    </div>
+    <div id="container" class="container col-8">
+        <div class="results">
+            <div class="result">
+                <strong>RESULT</strong>
+            </div>
+            <table class="table table-hover">
+                <tr class="bg-success">
+                    <th>MAINTAIN WEIGHT:</th>
+                    <th>{{ tdee }}</th>
+                </tr>
+                <tr class="bg-success">
+                    <th>MAINTAIN WEIGHT:</th>
+                    <th>{{ tdee }}</th>
+                </tr>
+                <tr class="bg-success">
+                    <th>MAINTAIN WEIGHT:</th>
+                    <th>{{ tdee }}</th>
+                </tr>
+            </table>
+            {{ a }}
+            <p>{{ res }}</p>
+            <p>{{ sex }}</p>
+            <p>BMR: {{ bmr }}</p>
+            <p>TDEE: {{ tdee }}</p>
+        </div>
+
+
+
+        <div data-aos="fade-up" class="card-deck text-center" style="margin-top: 100px">
+
+            <div class="card">
+                <img class="card-img-top" style="height: 250px"
+                     src="https://www.innovativehomecare.com/wp-content/uploads/2019/10/How-to-Lose-Weight-in-30-days-1-1024x681.jpg">
+                <div class="card-body">
+                    <h4 class="card-title">Lose weight</h4>
+                    <p class="card-text">Lose weight it is not easy</p>
+                    <a href="{% url 'diets:lose_weight' tdee  amount_of_breakfast amount_of_lunch %}" class="btn btn-success">Try it</a>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img class="card-img-top" style="height: 250px"
+                     src="https://www.healthline.com/hlcmsresource/images/AN_images/AN546-Woman-Meditating-732x549-thumb.jpg">
+                <div class="card-body">
+                    <h4 class="card-title">Stable weight</h4>
+                    <p class="card-text">Stable weight it is not easy</p>
+                    <a href="{% url 'diets:stable_weight' tdee  amount_of_breakfast amount_of_lunch %}" class="btn btn-success">Try it</a>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img class="card-img-top" style="height: 250px"
+                     src="https://qph.fs.quoracdn.net/main-qimg-332c8bdfbae05b87aa7fbe663ec9d28d.webp">
+                <div class="card-body">
+                    <h4 class="card-title">Raise weight</h4>
+                    <p class="card-text">Raise weight it is not easy</p>
+                    <a href="#" class="btn btn-success">Try it</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+{% endblock %}

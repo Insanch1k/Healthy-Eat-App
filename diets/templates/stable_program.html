@@ -1,0 +1,56 @@
+{% extends 'barbershop/base_generic.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <style>
+
+    </style>
+    {{ value }}
+    <div class="options">
+    <p>BREAKFAST: {{ amount_of_breakfast }}</p>
+        <p>LUNCH: {{ amount_of_lunch }}</p>
+        <p>{{ user.profile.phone }}</p>
+        <div class="container">
+            <h2>After calculating your amount of daily calories is: {{ value }}ccal</h2>
+            <p>Breakfast: {{ b_c }}</p>
+            {% if  amount_of_lunch  == 2 %}
+                <p>Lunch1: {{ l_c }}</p>
+                <p>Lunch2: {{ l_c }}</p>
+                {% else %}
+                <p>Lunch: {{ l_c }}</p>
+            {% endif %}
+
+            <p>Dinner: {{ d_c }}</p>
+        </div>
+        <div class="container">
+            <h2>Recipes for dinner:</h2>
+            {% for dinner in dinner_recipes %}
+                <p>{{ dinner.title }}</p>
+            {% endfor %}
+        </div>
+        <div class="container">
+            <h2>Recipes for breakfast:</h2>
+            {% for b in breakfast_recipes %}
+                <p>{{ b.title }}</p>
+            {% endfor %}
+        </div>
+        <div class="container">
+            <h2>Recipes for lunch:</h2>
+            {% for l in lunch_recipes %}
+                <p>{{ l.title }}</p>
+            {% endfor %}
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            {% if is_subscribe %}
+                <p>You have been already subscribe, you can check this -> <a href="{% url 'diets:my_program' %}">settings
+                    diet</a></p>
+            {% else %}
+                <input type="submit" class="btn btn-success" value="Subscribe">
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

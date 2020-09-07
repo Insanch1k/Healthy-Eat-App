@@ -1,0 +1,140 @@
+{% extends 'barbershop/base_generic.html' %}
+
+{% block title %}
+    My Health
+{% endblock %}
+
+
+{% block content %}
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+            integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+          integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous"/>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        body {
+            background-color: #40ff7b;
+        }
+
+        #his {
+            margin-top: 40px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #chart {
+            margin-top: 30px;
+        }
+
+        .title-description {
+            font-weight: bold;
+            font-size: 34px;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px gray;
+        }
+
+        .title-history {
+            font-weight: bold;
+            font-size: 34px;
+            color: gray;
+            text-align: center;
+            text-shadow: 2px 2px gray;
+        }
+
+        .add-button {
+            text-align: center;
+        }
+    </style>
+    {% if messages %}
+        <div class="container text-center mt-2">
+
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} text-center"
+                     role="alert">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+
+        </div>
+    {% endif %}
+    <div class="container">
+        <div class="description text-center mt-5">
+            <div class="title-description">Progress page</div>
+            <p>To make notification on phone for checking your weight</p>
+            <p>To make notification on phone for checking your weight</p>
+            <p>Some advice about weight and how to staring for it</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" id="his">
+                <div class="title-history">Tracking Progress</div>
+                <h4 class="text-center">History of my weight:</h4>
+                {% for w in weight %}
+                    <p>{{ w.weight }}kg - {{ w.created }}<a href="{% url 'diets:delete' w.id %}"><i
+                            class="fas fa-trash-alt ml-2"></i></a></p>
+                {% empty %}
+                    <p>Your history is clear</p>
+                {% endfor %}
+                <hr>
+                {% if res %}
+                    <p><strong>Your progress: {{ res }}kg </strong></p>
+                {% else %}
+                    You dont have enough history(you must have 2 records)
+                {% endif %}
+
+                <form class="mt-4" method="post" action=".">
+                    <div class="form-group">
+                        <label>Your currently weight<small> (you can enter your weight only one time in day)</small>: </label>
+                        {{ weight_form.weight }}
+                    </div>
+                    {% csrf_token %}
+                    <div class="add-button">
+                        <input class="btn btn-warning" type="submit" value="ADD">
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xl-12" id="chart">
+                <div class="chart-container">
+                    <canvas id="myChart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for i in weight %}'{{ i.created }}',{% endfor %}],
+                datasets: [{
+                    fill: true,
+                    response: true,
+                    label: 'My weight during all the time',
+                    borderColor: 'rgb(102,205,0)',
+                    data: [{% for i in weight %}{{ i.weight }}, {% endfor %}]
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'My weight during all the time'
+                },
+                legend: {
+                    display: false,
+                    labels: {
+                        fontColor: 'rgb(102,205,0)'
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}
