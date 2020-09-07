@@ -46,8 +46,7 @@ class Diet(models.Model):
                                 f'Lunch at {self.lunch_time}\n'
                                 f'Dinner at {self.dinner_time}\n'
                                 f'Time now: {datetime.datetime.today().time()}')
-        account_sid = 'AC43ea34bd786650eb056e24cc007fd8a6'
-        auth_token = '25b2a9e364ea080ab06361865326c0ea'
+        
         client = Client(account_sid, auth_token)
         message = client.messages.create(
             body=message_to_broadcast,
