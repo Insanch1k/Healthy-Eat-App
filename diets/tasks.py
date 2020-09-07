@@ -8,6 +8,12 @@ from django.contrib.auth.models import User
 from celery.task import periodic_task
 from django.conf import settings
 
+
+'''Module for define celery tasks'''
+
+#sending sms at the same time every day for each user
+
+
 REPORT_TEMPLATE_BREAKFAST = """
 MAKE BREAKFAST
 """
