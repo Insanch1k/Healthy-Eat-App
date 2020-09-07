@@ -2,8 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
-# Create your models here.
 
+'''Table for description of Category'''
 
 class Category(models.Model):
     name = models.CharField(max_length=50, db_index=True)
@@ -20,7 +20,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
+'''Table for description of Recipe'''
+    
 class Recipe(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     category = models.ForeignKey(Category, related_name='recipes', on_delete=models.CASCADE)
@@ -52,7 +53,8 @@ class Recipe(models.Model):
     def get_absolute_url(self):
         return reverse('hairstyle:recipe_detail', args=[self.id,self.slug])
 
-
+'''Table for description of Profile user'''
+    
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=13, blank=True)
