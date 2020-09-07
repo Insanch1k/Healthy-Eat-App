@@ -14,24 +14,9 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 
 
-def reg_done(request):
-    return render(request, 'registration/register_done.html')
-
 
 def home(request):
     return render(request, 'barbershop/home.html')
-
-
-def example(request):
-    return render(request, 'barbershop/example.html')
-
-
-def new_template(request):
-    return render(request, 'barbershop/home.html')
-
-
-class StartView(TemplateView):
-    template_name = 'barbershop/start_page.html'
 
 
 class AboutView(TemplateView):
@@ -39,26 +24,32 @@ class AboutView(TemplateView):
 
 
 @login_required
-def edit(request):  # funkcja realizujaca edycje profilu
+def edit(request):  
+    
+    '''Function for edit profile of user'''
+    
     if request.method == 'POST':
-        user_form = EditUser(instance=request.user, data=request.POST)  # wyswietlenie danych uzytkownika
+        user_form = EditUser(instance=request.user, data=request.POST)  
         profile_form = EditProfile(instance=request.user.profile, data=request.POST, files=request.FILES)
 
-        if user_form.is_valid() and profile_form.is_valid():  # jesli dane sa validowane
+        if user_form.is_valid() and profile_form.is_valid():  
             profile_form.save()
-            user_form.save()  # zmieniamy na nowe
-            messages.success(request, "Successfully")  # wiadomosc ze dane zostaly zmienione
+            user_form.save()  
+            messages.success(request, "Successfully")  
         else:
-            messages.error(request, "Fail")  # wiadomosc ze nie zostaly
+            messages.error(request, "Fail") 
     else:
-        user_form = EditUser(instance=request.user)  # wyswieltenie pustej formy
+        user_form = EditUser(instance=request.user)  
         profile_form = EditProfile(instance=request.user.profile)
     return render(request, 'profile/edit.html', {'user_form': user_form,
-                                                 'profile_form': profile_form})  # przekazyjemy dane w HTML
+                                                 'profile_form': profile_form})  
 
 
 @login_required
 def my_profile(request):
+    
+    '''Function for showing profile of user'''
+    
     program = None
     try:
         program = Diet.objects.filter(subscriber=request.user)
@@ -85,53 +76,39 @@ def my_profile(request):
                                                            })
 
 
-def register(request):  # funkcja rejestracji
+def register(request):  
+    
+    '''Function for regestration of user'''
+    
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)  # wyswietlamy forme do rejestracji
+        user_form = UserRegistrationForm(request.POST)  
         profile_form = EditProfile(request.POST)
-        if user_form.is_valid() and profile_form.is_valid():  # jesli forma validowana
-            new_user = user_form.save(commit=False)  # bierzemy dane nowego uzytkownika ale nie zachowujemy w bazie
-            new_user.set_password(user_form.cleaned_data['password'])  # haslo dla uzytkownika
-            new_user.save()  # zachowujemy  w bazie
-            # profile = profile_form.save(commit=False)
-            # profile_form.user = new_user
-            # profile.save()
+        if user_form.is_valid() and profile_form.is_valid():  
+            new_user = user_form.save(commit=False) 
+            new_user.set_password(user_form.cleaned_data['password'])  
+            new_user.save()  
+ 
             profile = profile_form.save(commit=False)
             profile.user = new_user
             profile.save()
-            # profile_form.user = new_user
-            # profile_form.save()
+            
             login(request, new_user,
-                  backend='django.contrib.auth.backends.ModelBackend')  # logujemy automatycznie uzytkownika na stronie
+                  backend='django.contrib.auth.backends.ModelBackend')  
 
             return render(request, 'barbershop/about.html',
-                          {'new_user': new_user})  # przekazyjemy dane w HTML
+                          {'new_user': new_user})  
     else:
-        user_form = UserRegistrationForm()  # pusta forma
+        user_form = UserRegistrationForm()  
         profile_form = EditProfile()
     return render(request, 'registration/register.html', {'user_form': user_form,
                                                           'profile_form': profile_form
-                                                          })  # przekazyjemy dane w HTML
-
-
-def calculator_result(request):
-    w = float(request.GET["weight"])
-    a = float(request.GET["age"])
-    h = float(request.GET["height"])
-
-    result = w + a + h
-
-    context = {
-        'res': result,
-    }
-    return render(request, 'barbershop/calc_res.html', context)
-
-
-def calculator(request):
-    return render(request, 'barbershop/calculator.html')
+                                                          }) 
 
 
 def recipe_list(request):
+    
+    '''Function for showing list of recipes'''
+    
     categories = Category.objects.all()
     recipes = Recipe.objects.all()
     r = recipes.count()
@@ -142,6 +119,9 @@ def recipe_list(request):
 
 
 def recipe_detail(request, id, slug):
+    
+    '''Function for showing detail information about recipe'''
+    
     recipe = get_object_or_404(Recipe, id=id, slug=slug)
     is_favorite = False
     if recipe.favorite.filter(id=request.user.id).exists():
@@ -151,6 +131,9 @@ def recipe_detail(request, id, slug):
 
 
 def favorite(request, id, slug):
+    
+    '''Function for adding recipe to your favorite recipes, for showing in profile'''
+    
     recipe = get_object_or_404(Recipe, id=id, slug=slug)
     if recipe.favorite.filter(id=request.user.id).exists():
         recipe.favorite.remove(request.user)
@@ -160,6 +143,9 @@ def favorite(request, id, slug):
 
 
 def search(request):
+    
+    '''Function for searching recipes'''
+    
     query = request.GET.get('q', '')
 
     if query:
@@ -177,6 +163,9 @@ def search(request):
 
 
 def recipes_by_category(request, category_slug):
+    
+    '''Function for showing list of recipes by category'''
+    
     by_category = get_object_or_404(Category, slug=category_slug)
     recipes = Recipe.objects.filter(category=by_category)
     query_calories = request.GET.get('calories')
@@ -195,6 +184,9 @@ def recipes_by_category(request, category_slug):
 
 
 def search_calories(request, category_slug):
+    
+    '''Function for searching recipes by calories and category'''
+    
     by_category = get_object_or_404(Category, slug=category_slug)
     recipes = Recipe.objects.filter(category=by_category)
     query_calories = request.GET.get('calories', '')
