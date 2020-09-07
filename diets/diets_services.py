@@ -2,6 +2,9 @@ from .models import Diet
 from hairstyle.models import Recipe
 
 
+'''Functions below for calculate amount of calories for each eating'''
+
+
 def calculate_recipes_for_breakfast_for_lose_weight_program(amount_of_carbs, amount_of_fat, amount_of_protein,
                                                             breakfast_calories):
     breakfast_recipes = Recipe.objects.filter(
