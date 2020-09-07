@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .models import Weight, Diet
-from django.db.models import Max, Min
 from .forms import WeightForm
 import datetime
 from django.http import HttpResponse
@@ -15,12 +14,13 @@ from .diets_services import calculate_recipes_for_breakfast_for_lose_weight_prog
     calculate_recipes_for_lunch_for_lose_program, calculate_recipes_for_dinner_for_lose_program
 
 
-# Create your views here.
-# проверка есть ли вейт, если да то показать историю и тд если нет то просто форму для добавления первых показателей
 
 
 @login_required()
 def show_progress(request):
+    
+    '''That function show for every user their weight progress in profile like graph'''
+    
     user = request.user
     my_weight = Weight.objects.filter(user=user).order_by('created')
     firstt = None
@@ -70,6 +70,9 @@ def show_progress(request):
 
 
 def delete_weight(request, id):
+    
+    '''Function for deleting weight from our weight history'''
+    
     user = request.user
     item = Weight.objects.get(user=user, id=id)
     if request.method == 'POST':
@@ -79,6 +82,13 @@ def delete_weight(request, id):
 
 
 def calculator(request):
+    
+    #bmr - is the total number of calories that your body needs to perform basic, life-sustaining functions.
+    
+    #tdee - is an estimation of how many calories you burn per day when exercise is taken into account.
+    
+    '''Function for calculating bmr and tdee'''
+    
     if request.method == 'POST':
         activity = request.POST['drop']
         sex = request.POST['sex']
@@ -107,6 +117,9 @@ def calculator(request):
 
 
 def stable_weight_program(request, value, amount_of_breakfast, amount_of_lunch):
+    
+    '''Function for showing program "stable weight" for every users  for their tdee and bmr'''
+    
     dinner_recipes = None
     breakfast_recipes = None
     lunch_recipes = None
@@ -133,7 +146,7 @@ def stable_weight_program(request, value, amount_of_breakfast, amount_of_lunch):
                                               calories__range=(lunch_calories - 20, lunch_calories + 25))
         breakfast_recipes = Recipe.objects.filter(category__name='Breakfast',
                                                   calories__range=(breakfast_calories - 20, breakfast_calories + 20))
-    # calculate recipes for user
+
     is_subscribe = False
     stable_program = Diet.objects.filter(subscriber=request.user)
     if stable_program:
@@ -157,7 +170,7 @@ def stable_weight_program(request, value, amount_of_breakfast, amount_of_lunch):
                 new_program.breakfast.add(b.id)
             for lunch in lunch_recipes:
                 new_program.lunch.add(lunch.id)
-        # create new record in database with recipes for every user
+            # create new record in database with recipes for every user
         return redirect('hairstyle:my_profile')
     context = {
         'value': value,
@@ -175,6 +188,9 @@ def stable_weight_program(request, value, amount_of_breakfast, amount_of_lunch):
 
 
 def lose_weight(request, value, amount_of_lunch, amount_of_breakfast):
+    
+    '''Function for showing program "lose weight" for every users  for their tdee and bmr'''
+    
     value -= (value * 0.15)
     amount_of_carbs = (value * 0.45) / 4
     amount_of_fat = (value * 0.25) / 9
@@ -219,6 +235,9 @@ def lose_weight(request, value, amount_of_lunch, amount_of_breakfast):
 
 
 def my_program(request):
+    
+    '''Function for showing persona program for user in profile'''
+    
     my_diet = Diet.objects.get(subscriber=request.user, is_active=True)
     times = [my_diet.breakfast_time, my_diet.lunch_time, my_diet.dinner_time]
     time_now = datetime.datetime.today().time()
@@ -237,6 +256,9 @@ def my_program(request):
 
 
 def settings_for_myprogram(request):
+    
+    '''Settings of personal program for user, opportunity unsub from program'''
+    
     program = Diet.objects.get(subscriber=request.user)
     if request.method == 'POST':
         program.delete()  # delete diet for user
