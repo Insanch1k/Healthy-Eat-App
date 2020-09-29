@@ -3,6 +3,7 @@ from hairstyle.models import Recipe
 from django.core.mail import send_mail
 from twilio.rest import Client
 import datetime
+from . import pswd
 
 
 def get_weight_item(user, id):
@@ -107,8 +108,8 @@ def send_confirm(new_program):
                             f'Breakfast at {new_program.breakfast_time}\n'
                             f'Lunch at {new_program.lunch_time}\n'
                             f'Dinner at {new_program.dinner_time}\n')
-    account_sid = 'AC43ea34bd786650eb056e24cc007fd8a6'
-    auth_token = '992283c8ea1deed10c5f47c61bf69e83'
+    account_sid = pswd.account_sid
+    auth_token = pswd.auth_token
     client = Client(account_sid, auth_token)
     message = client.messages.create(
         body=message_to_broadcast,

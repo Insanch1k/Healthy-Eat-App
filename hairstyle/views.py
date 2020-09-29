@@ -14,10 +14,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> a2718985b2ce9faa27afda783f776e91372ef8bc
 def home(request):
     return render(request, 'barbershop/home.html')
 
@@ -105,12 +102,12 @@ def register(request):
         profile_form = EditProfile()
     return render(request, 'registration/register.html', {'user_form': user_form,
                                                           'profile_form': profile_form
-<<<<<<< HEAD
+
                                                           })  # przekazyjemy dane w HTML
 
-=======
-                                                          }) 
->>>>>>> a2718985b2ce9faa27afda783f776e91372ef8bc
+
+
+
 
 
 def recipe_list(request):

@@ -37,27 +37,4 @@ class Diet(models.Model):
 
     def __str__(self):
         return self.title
-<<<<<<< HEAD
 
-    '''def create()'''
-    '''def save(self, *args, **kwargs):
-=======
-    
-    '''Function for sending sms with confirm of subscription on diet program'''
-    
-    def save(self, *args, **kwargs):
->>>>>>> a2718985b2ce9faa27afda783f776e91372ef8bc
-        message_to_broadcast = (f'Hello {self.subscriber.username}! You just subscribed on {self.title}.\n'
-                                f'Breakfast at {self.breakfast_time}\n'
-                                f'Lunch at {self.lunch_time}\n'
-                                f'Dinner at {self.dinner_time}\n'
-                                f'Time now: {datetime.datetime.today().time()}')
-        
-        client = Client(account_sid, auth_token)
-        message = client.messages.create(
-            body=message_to_broadcast,
-            from_='+12526240484',
-            to=self.subscriber.profile.phone
-        )
-        print(message.sid)
-        return super(Diet, self).save(*args, **kwargs)

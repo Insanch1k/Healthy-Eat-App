@@ -2,12 +2,10 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 from django.core.validators import RegexValidator
-=======
->>>>>>> a2718985b2ce9faa27afda783f776e91372ef8bc
 
 '''Table for description of Category'''
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50, db_index=True)
@@ -24,8 +22,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 '''Table for description of Recipe'''
-    
+
+
 class Recipe(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     category = models.ForeignKey(Category, related_name='recipes', on_delete=models.CASCADE)
@@ -57,8 +57,10 @@ class Recipe(models.Model):
     def get_absolute_url(self):
         return reverse('hairstyle:recipe_detail', args=[self.id, self.slug])
 
+
 '''Table for description of Profile user'''
-    
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
