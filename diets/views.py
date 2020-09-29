@@ -8,6 +8,7 @@ from django.contrib import messages
 from .diets_services import *
 
 
+# Function shows for user his history of weight and graph
 @login_required()
 def show_progress(request):
     user = request.user

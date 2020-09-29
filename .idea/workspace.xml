@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9645b561-3292-4ea7-8196-f43c698a9037" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barbershop/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/barbershop/celery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/barbershop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/barbershop/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/diets_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/diets_services.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diets/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/templates/barbershop/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/barbershop/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/templates/barbershop/base_generic.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/barbershop/base_generic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/templates/posts/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/news/templates/posts/post_detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +189,7 @@
       <workItem from="1601142094405" duration="3772000" />
       <workItem from="1601382269167" duration="809000" />
       <workItem from="1601383142637" duration="104000" />
-      <workItem from="1601383259905" duration="2426000" />
+      <workItem from="1601383259905" duration="2948000" />
     </task>
     <servers />
   </component>
