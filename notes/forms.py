@@ -2,6 +2,8 @@ from django import  forms
 from .models import Notes
 
 
+'''Form for adding new notes'''
+
 class AddForm(forms.ModelForm):
     class Meta:
         model = Notes

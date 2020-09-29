@@ -6,7 +6,11 @@ from django.db.models import Count
 from .forms import CommentForm
 
 
+
 class MainView(ListView):
+    
+    '''Functipn for showing list of posts'''
+    
     template_name = 'barbershop/home.html'
     paginate_by = 3
     model = Post
@@ -18,6 +22,9 @@ class MainView(ListView):
 
 
 def post_detail(request, slug):
+    
+    '''Function for showing detail information about posts'''
+    
     post = get_object_or_404(Post, slug=slug)
 
     comments = post.comments.all()

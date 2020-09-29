@@ -1,14 +1,11 @@
-from django.core.validators import RegexValidator
+
 from django.db import models
 from django.contrib.auth.models import User
 from hairstyle.models import Recipe
 import datetime
-from django.core.mail import send_mail
 from twilio.rest import Client
 
-
-# Create your models here.
-
+'''Table for description of Weight for every users'''
 
 class Weight(models.Model):
     user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE)
@@ -18,7 +15,8 @@ class Weight(models.Model):
     class Meta:
         ordering = ('created',)
 
-
+'''Table for description of Diet'''
+        
 class Diet(models.Model):
     title = models.CharField(blank=True, max_length=100)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
@@ -39,16 +37,22 @@ class Diet(models.Model):
 
     def __str__(self):
         return self.title
+<<<<<<< HEAD
 
     '''def create()'''
     '''def save(self, *args, **kwargs):
+=======
+    
+    '''Function for sending sms with confirm of subscription on diet program'''
+    
+    def save(self, *args, **kwargs):
+>>>>>>> a2718985b2ce9faa27afda783f776e91372ef8bc
         message_to_broadcast = (f'Hello {self.subscriber.username}! You just subscribed on {self.title}.\n'
                                 f'Breakfast at {self.breakfast_time}\n'
                                 f'Lunch at {self.lunch_time}\n'
                                 f'Dinner at {self.dinner_time}\n'
                                 f'Time now: {datetime.datetime.today().time()}')
-        account_sid = 'AC43ea34bd786650eb056e24cc007fd8a6'
-        auth_token = '25b2a9e364ea080ab06361865326c0ea'
+        
         client = Client(account_sid, auth_token)
         message = client.messages.create(
             body=message_to_broadcast,
@@ -56,4 +60,4 @@ class Diet(models.Model):
             to=self.subscriber.profile.phone
         )
         print(message.sid)
-        return super(Diet, self).save(*args, **kwargs)'''
+        return super(Diet, self).save(*args, **kwargs)

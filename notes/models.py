@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.conf import settings
 
+'''Table for description Notes'''
 
 class Notes(models.Model):
     title = models.CharField(max_length=200, db_index=True)

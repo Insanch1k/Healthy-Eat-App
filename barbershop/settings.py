@@ -138,15 +138,15 @@ LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = 'news:main'
 LOGOUT_URL = '/logout/'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '559837011368922'
-SOCIAL_AUTH_FACEBOOK_SECRET = '42c3e9cb91ecdb06b3d699f7cc438663'
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'anton.kryvushenko@gmail.com'
-EMAIL_HOST_PASSWORD = 'A_55_toxa_2202'
+EMAIL_HOST_PASSWORD = ''
 
 REDIS_HOST = 'localhost'
 REDIS_PORT = '6360'
@@ -154,5 +154,5 @@ BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 
-account_sid = 'AC43ea34bd786650eb056e24cc007fd8a6'
-auth_token = '25b2a9e364ea080ab06361865326c0ea'
+account_sid = ''
+auth_token = ''

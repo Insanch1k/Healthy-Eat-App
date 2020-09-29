@@ -7,43 +7,52 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def home_notes(request):  # wyswietlenie wszystkich notatek
-    user = request.user  # zalogowany uzytkownik
-    notes = Notes.objects.filter(owner=user).order_by('-created')  # wszystkie notatki dla zalogowanego uzytkownika
+def home_notes(request):  
+    
+    '''Function for showing list of notes'''
+    
+    user = request.user  
+    notes = Notes.objects.filter(owner=user).order_by('-created')  
     if request.method == 'POST':
-        add_form = AddForm(request.POST)  # forma da dodania nowych notatek
-        if add_form.is_valid():  # jeski forma walidowana
-            new_notes = add_form.save(commit=False)  # bierzemy dane ale nie zachowuhemy w bazie
-            new_notes.owner = request.user  # przepisujemy wlasciciela
-            new_notes.save()  # zacowujemy w bazie
-        return redirect('notes:home_notes')  # lecimy na strone gdzie sa wszystkie notatki
+        add_form = AddForm(request.POST)  
+        if add_form.is_valid():  
+            new_notes = add_form.save(commit=False)  
+            new_notes.owner = request.user  
+            new_notes.save() 
+        return redirect('notes:home_notes') 
     else:
-        add_form = AddForm()  # pusta forma
-    context = {  # przekazyjemy dane w HTML
+        add_form = AddForm() 
+    context = {  
         'notes': notes,
         'add_form': add_form,
     }
-    return render(request, 'notes/notes_main.html', context)  # przekazyjemy dane w HTML
+    return render(request, 'notes/notes_main.html', context)  
 
 
 @login_required
-def update_notes(request, id):  # edycja notatek
-    n = Notes.objects.get(id=id)  # bierzemy notatke za pomoca id
+def update_notes(request, id):  
+    
+    '''Function for updeting information of notes'''
+    
+    n = Notes.objects.get(id=id)
 
-    form = AddForm(instance=n)  # forma dla edycji
+    form = AddForm(instance=n)  
     if request.method == 'POST':
-        form = AddForm(request.POST, instance=n)  # wyswietlamy stare dane
-        if form.is_valid():  # jesli forma walidowana
-            form.save()  # zachowujemy w bazie
-            return redirect('notes:home_notes')  # lecimy na strone gdzie sa wszystkie notatki
-    context = {  # przekazyjemy dane w HTML
+        form = AddForm(request.POST, instance=n)
+        if form.is_valid(): 
+            form.save()  
+            return redirect('notes:home_notes')  
+    context = { 
         'form': form,
     }
-    return render(request, 'notes/notes_update_form.html', context)  # przekazyjemy dane w HTML
+    return render(request, 'notes/notes_update_form.html', context) 
 
 
 @login_required
 def delete(request, id):
+    
+    '''Function for delete notes'''
+    
     item = Notes.objects.get(id=id)
     if request.method == 'POST':
         item.delete()
