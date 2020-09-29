@@ -5,14 +5,23 @@
 {% block content %}
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <style>
+        body {
+            background-image: url("https://ak.picdn.net/offset/photos/5ab5178417fb156e4807c07e/medium/photo.jpg");
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+
+        }
+
         .container {
-            background-color: aliceblue;
-            margin-top: 30px;
+
             border-radius: 10px;
             padding: 10px;
         }
 
         .result {
+            padding: 10px;
             background-color: #30BF61;
             border-radius: 10px;
             color: white;
@@ -24,78 +33,311 @@
         table {
             color: white;
         }
+
+        #result {
+            background-color: #cccccc;
+        }
+
+        .index-title {
+            font-size: 34px;
+            text-shadow: 2px 2px gray;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
+        .water-title {
+            font-size: 34px;
+            text-shadow: 2px 2px gray;
+            color: white;
+            font-weight: bold;
+        }
+
+        .result-wrap {
+            color: white;
+        }
+
+        .water {
+            background: #383F43;
+            width: 500px;
+            height: 400px;
+            padding: 10px;
+            margin: 20px 20px 20px 20px;
+            display: inline-block;
+            border-radius: 15px;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .result-title {
+            font-weight: bold;
+            font-size: 46px;
+            color: white;
+            text-align: center;
+        }
+
+        .title {
+            margin-left: 20px;
+            font-size: 40px;
+            text-align: center;
+            color: gray;
+            font-weight: bold;
+        }
+
+
+        .index-number, .weight-number, .perfect-weight {
+            padding: 65px 0;
+            text-align: center;
+            border-radius: 50%;
+            border-style: solid;
+            border-color: #30BF61;
+            width: 200px;
+            height: 200px;
+            display: table;
+            margin: 0 auto;
+        }
+
+        .index {
+            font-weight: bold;
+            font-size: 35px;
+        }
+
+        .weight {
+            font-size: 30px;
+        }
+
+        .info-water {
+
+        }
+
+        .info-water-value {
+            font-size: 35px;
+            transform: translate(-24px, -90px);
+            font-weight: bold;
+        }
+
+        .weight-value {
+            font-size: 35px;
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 400px; /* Could be more or less, depending on screen size */
+            color: black;
+            background-color: lightgray;
+        }
     </style>
-    <div class="col-2">
+    <div class="container">
 
-    </div>
-    <div id="container" class="container col-8">
-        <div class="results">
-            <div class="result">
-                <strong>RESULT</strong>
+        <div class="result-title">RESULT</div>
+        <div class="water">
+            <div class="title">Index
+                <button id="myBtn2" style="float: right; background: None; border: None"><i
+                        class="far fa-question-circle"></i>
+                </button>
             </div>
-            <table class="table table-hover">
-                <tr class="bg-success">
-                    <th>MAINTAIN WEIGHT:</th>
-                    <th>{{ tdee }}</th>
-                </tr>
-                <tr class="bg-success">
-                    <th>MAINTAIN WEIGHT:</th>
-                    <th>{{ tdee }}</th>
-                </tr>
-                <tr class="bg-success">
-                    <th>MAINTAIN WEIGHT:</th>
-                    <th>{{ tdee }}</th>
-                </tr>
-            </table>
-            {{ a }}
-            <p>{{ res }}</p>
-            <p>{{ sex }}</p>
-            <p>BMR: {{ bmr }}</p>
-            <p>TDEE: {{ tdee }}</p>
+            <div id="myModal2" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <p>Body mass index (BMI) is a value derived from the mass (weight) and height of a person. The BMI
+                        is defined as the body mass divided by the square of the body height, and is universally
+                        expressed in units of kg/m2, resulting from mass in kilograms and height in metres. </p>
+                </div>
+
+            </div>
+            <div class="index-number">
+                <div class="index">{{ bmi }}</div>
+            </div>
+            <h3 class="mt-5">YOUR WEIGHT: </h3>
+            {% if bmi <= 16 %}
+                <h3 style="color: red">Severe Thinness</h3>
+            {% elif bmi < 17 and bmi > 16 %}
+                <h3 style="color: red">Moderate Thinness</h3>
+            {% elif bmi > 17 and bmi < 18.5 %}
+                <h3 style="color: orange">Mild Thinness</h3>
+            {% elif bmi > 25.5 %}
+                <h3 style="color: orange">Overweight</h3>
+            {% elif bmi > 18.5 and bmi < 25.5 %}
+                <h3 style="color: #30BF61">NORMAL</h3>
+            {% endif %}
+        </div>
+        <div style="float: right" class="water">
+            <div class="title">Calories
+                <button id="myBtn3" style="float: right; background: None; border: None"><i
+                        class="far fa-question-circle"></i>
+                </button>
+            </div>
+            <div id="myModal3" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <p>Calories</p>
+                </div>
+
+            </div>
+
+            <div class="weight-number">
+                <div class="weight">{{ tdee }} - {{ tdee_plus }}</div>
+
+            </div>
+            <h2>RECOMMENDED DAILY CALORIES: </h2>
+            <p>Lose: {{ tdee_lose_weight }} - {{ tdee_lose_weight_plus }} calories</p>
+            <p>GAIN: {{ tdee_gain_weight }} - {{ tdee_gain_weight_plus }} calories</p>
+        </div>
+        <div class="water">
+            <div class="title">Water
+                <button id="myBtn" style="float: right; background: None; border: None"><i
+                        class="far fa-question-circle"></i>
+                </button>
+            </div>
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <p>This tool can prove to be very useful in determining how much water you actually need to drink as
+                        it takes various factors in consideration.</p>
+                </div>
+
+            </div>
+            <div class="info-water">
+                <img src="https://be-fit.pro/wp-content/themes/befit/img/drops.png">
+                <div class="info-water-value">
+                    <span>2.1 l</span>
+                </div>
+            </div>
+            <h3>RECOMMENDED DAILY RATE:</h3>
+            <h3 style="color: #30BF61">2.1 l</h3>
+
+        </div>
+        <div style="float: right" class="water">
+            <div class="title">Result
+                <button id="myBtn1" style="float: right; background: None; border: None"><i
+                        class="far fa-question-circle"></i>
+                </button>
+            </div>
+            <div id="myModal1" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <p>RES</p>
+                </div>
+
+            </div>
+            <div class="perfect-weight">
+                <div class="weight-value mt-3">71.2 kg</div>
+            </div>
+            <p class="mt-5">PERFECT WEIGHT:</p>
+            <h3 style="color: #30BF61">71.2 kg</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+
         </div>
 
+        <div class="container col-sm-8">
 
+            <div data-aos="fade-up" class="card-deck text-center" style="margin-top: 100px">
 
-        <div data-aos="fade-up" class="card-deck text-center" style="margin-top: 100px">
-
-            <div class="card">
-                <img class="card-img-top" style="height: 250px"
-                     src="https://www.innovativehomecare.com/wp-content/uploads/2019/10/How-to-Lose-Weight-in-30-days-1-1024x681.jpg">
-                <div class="card-body">
-                    <h4 class="card-title">Lose weight</h4>
-                    <p class="card-text">Lose weight it is not easy</p>
-                    <a href="{% url 'diets:lose_weight' tdee  amount_of_breakfast amount_of_lunch %}" class="btn btn-success">Try it</a>
+                <div style="background-color: lightgray" class="card">
+                    <img class="card-img-top" style="height: 250px"
+                         src="https://www.innovativehomecare.com/wp-content/uploads/2019/10/How-to-Lose-Weight-in-30-days-1-1024x681.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">Lose weight</h4>
+                        <p class="card-text">Lose weight it is not easy</p>
+                        <a href="{% url 'diets:lose_weight' tdee %}"
+                           class="btn btn-success">Try it</a>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="card">
-                <img class="card-img-top" style="height: 250px"
-                     src="https://www.healthline.com/hlcmsresource/images/AN_images/AN546-Woman-Meditating-732x549-thumb.jpg">
-                <div class="card-body">
-                    <h4 class="card-title">Stable weight</h4>
-                    <p class="card-text">Stable weight it is not easy</p>
-                    <a href="{% url 'diets:stable_weight' tdee  amount_of_breakfast amount_of_lunch %}" class="btn btn-success">Try it</a>
+                <div style="background-color: lightgray" class="card">
+                    <img class="card-img-top" style="height: 250px"
+                         src="https://www.healthline.com/hlcmsresource/images/AN_images/AN546-Woman-Meditating-732x549-thumb.jpg">
+                    <div class="card-body">
+                        <h4 class="card-title">Stable weight</h4>
+                        <p class="card-text">Stable weight it is not easy</p>
+                        <a href="{% url 'diets:stable_weight' tdee %}"
+                           class="btn btn-success">Try it</a>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="card">
-                <img class="card-img-top" style="height: 250px"
-                     src="https://qph.fs.quoracdn.net/main-qimg-332c8bdfbae05b87aa7fbe663ec9d28d.webp">
-                <div class="card-body">
-                    <h4 class="card-title">Raise weight</h4>
-                    <p class="card-text">Raise weight it is not easy</p>
-                    <a href="#" class="btn btn-success">Try it</a>
+                <div style="background-color: lightgray" class="card">
+                    <img class="card-img-top" style="height: 250px"
+                         src="https://qph.fs.quoracdn.net/main-qimg-332c8bdfbae05b87aa7fbe663ec9d28d.webp">
+                    <div class="card-body">
+                        <h4 class="card-title">Gain weight</h4>
+                        <p class="card-text">Gain weight it is not easy</p>
+                        <a href="{% url 'diets:gain_weight' tdee %}" class="btn btn-success">Try it</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-2">
+        <div class="col-sm-2">
 
+        </div>
     </div>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        var modal1 = document.getElementById("myModal1");
+        var modal2 = document.getElementById("myModal2");
+        var modal3 = document.getElementById("myModal3");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        var btn1 = document.getElementById("myBtn1");
+        var btn2 = document.getElementById("myBtn2");
+        var btn3 = document.getElementById("myBtn3");
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        btn2.onclick = function () {
+            modal2.style.display = "block";
+        }
+        btn3.onclick = function () {
+            modal3.style.display = "block";
+        }
+        btn1.onclick = function () {
+            modal1.style.display = "block";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            } else if (event.target == modal1) {
+                modal1.style.display = "none";
+            } else if (event.target == modal2) {
+                modal2.style.display = "none";
+            } else if (event.target == modal3) {
+                modal3.style.display = "none";
+            }
+        }
     </script>
 {% endblock %}

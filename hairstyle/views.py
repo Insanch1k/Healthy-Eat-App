@@ -10,12 +10,8 @@ from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Q
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-
-
-def reg_done(request):
-    return render(request, 'registration/register_done.html')
 
 
 def home(request):
@@ -114,30 +110,23 @@ def register(request):  # funkcja rejestracji
                                                           })  # przekazyjemy dane w HTML
 
 
-def calculator_result(request):
-    w = float(request.GET["weight"])
-    a = float(request.GET["age"])
-    h = float(request.GET["height"])
-
-    result = w + a + h
-
-    context = {
-        'res': result,
-    }
-    return render(request, 'barbershop/calc_res.html', context)
-
-
-def calculator(request):
-    return render(request, 'barbershop/calculator.html')
-
 
 def recipe_list(request):
     categories = Category.objects.all()
     recipes = Recipe.objects.all()
     r = recipes.count()
+    paginator = Paginator(recipes, 3)
+    page = request.GET.get('page')
+    recipe_list = None
+    try:
+        recipe_list = paginator.page(page)
+    except PageNotAnInteger:
+        recipe_list = paginator.page(1)
+    except EmptyPage:
+        recipe_list = paginator.page(paginator.num_pages)
     return render(request, 'recipes/recipes_list.html', {'categories': categories,
                                                          'recipes': recipes,
-
+                                                         'recipe_list': recipe_list
                                                          })
 
 
@@ -200,7 +189,7 @@ def search_calories(request, category_slug):
     query_calories = request.GET.get('calories', '')
     q = int(query_calories)
     if query_calories:
-        result = recipes.filter(calories__range=(q - 20, q + 20))
+        result = recipes.filter(calories__range=(q - 50, q + 50))
     else:
         result = recipes.all()
     count_of_result = len(result)

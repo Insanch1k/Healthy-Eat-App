@@ -13,11 +13,9 @@ urlpatterns = [
     path('my_profile/edit/', views.edit, name='edit'),
     path('about', views.AboutView.as_view(), name='about'),
     path('new_template/', views.new_template, name='new_template'),
-    path('reg_done/', views.reg_done, name='reg_done'),
     path('example/', views.example, name='example'),
     path('recipes/', views.recipe_list, name='recipes_list'),
     path('results/', views.search, name='search_recipes'),
-    path('<slug:category_slug>/', views.recipe_list, name='list_by_category'),
     path('by/<slug:category_slug>', views.recipes_by_category, name='recipes_by'),
     path('res_for/<slug:category_slug>', views.search_calories, name='search_calories'),
 

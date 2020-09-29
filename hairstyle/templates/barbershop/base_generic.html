@@ -12,8 +12,8 @@
 {% load staticfiles %}
 <body>
 <style>
-    ''
-    '@import url(//fonts.googleapis.com/earlyaccess/lohitdevanagari.css);
+
+    '''@import url(//fonts.googleapis.com/earlyaccess/lohitdevanagari.css);
     ul.messages {
         margin: 10px 100px;
         padding: 0;
@@ -44,24 +44,8 @@
         list-style: none;
     }
 
-    .messages li.success {
-        background-color: green;
-        margin: 0;
-        padding: 14px 20px;
-        list-style: none;
 
-    }
 
-    .messages li.error {
-        background-color: red;
-        margin: 0;
-        padding: 14px 20px;
-        list-style: none;
-    }
-
-    .help-block {
-        display: none;
-    }
 
     .asteriskField {
         display: none;
@@ -73,7 +57,7 @@
 
     .image-header {
         background-image: url("https://images.squarespace-cdn.com/content/v1/5b8cefd712b13f8a70cddd6c/1575979023951-P0RT0CUS05WDIQ3AOZ0T/ke17ZwdGBToddI8pDm48kMr7cO87uK4i5FGmPfgnAmJ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0haypLsn6iFkXbd5QrnyzAHzxnA2Pnr_1Ly5Z0Of8AN2PL3ebnl0oVnm1pJVKrE9Rw/Scoffsapp+Website+Background.jpg?format=2500w");
-        height: 400px;
+        height: 300px;
         background-position: top;
         position: relative;
     }
@@ -113,7 +97,7 @@
 </div>
 
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="{% url 'news:main' %}">FitMeals</a>
+    <a class="navbar-brand" href="{% url 'news:main' %}">StayFit</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -40,6 +40,7 @@ class Diet(models.Model):
     def __str__(self):
         return self.title
 
+    '''def create()'''
     '''def save(self, *args, **kwargs):
         message_to_broadcast = (f'Hello {self.subscriber.username}! You just subscribed on {self.title}.\n'
                                 f'Breakfast at {self.breakfast_time}\n'

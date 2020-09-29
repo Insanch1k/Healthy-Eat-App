@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style>
         body {
-            background-color: #40ff7b;
+            background-color: #30BF61;
         }
 
         #his {
@@ -42,7 +42,7 @@
             font-size: 34px;
             color: gray;
             text-align: center;
-            text-shadow: 2px 2px gray;
+            text-shadow: 2px 2px lightgray;
         }
 
         .add-button {
@@ -73,12 +73,20 @@
             <div class="col-sm-6" id="his">
                 <div class="title-history">Tracking Progress</div>
                 <h4 class="text-center">History of my weight:</h4>
-                {% for w in weight %}
-                    <p>{{ w.weight }}kg - {{ w.created }}<a href="{% url 'diets:delete' w.id %}"><i
-                            class="fas fa-trash-alt ml-2"></i></a></p>
-                {% empty %}
-                    <p>Your history is clear</p>
-                {% endfor %}
+                <table class="table table-hover">
+                    <tbody>
+                    {% for w in weight %}
+                        <tr>
+                            <td>{{ w.weight }} kg</td>
+                            <td>{{ w.created }}</td>
+                            <td><a href="{% url 'diets:delete' w.id %}"><i
+                                    class="fas fa-trash-alt ml-2"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+
                 <hr>
                 {% if res %}
                     <p><strong>Your progress: {{ res }}kg </strong></p>
@@ -88,7 +96,8 @@
 
                 <form class="mt-4" method="post" action=".">
                     <div class="form-group">
-                        <label>Your currently weight<small> (you can enter your weight only one time in day)</small>: </label>
+                        <label>Your currently weight<small> (you can enter your weight only one time in day)</small>:
+                        </label>
                         {{ weight_form.weight }}
                     </div>
                     {% csrf_token %}

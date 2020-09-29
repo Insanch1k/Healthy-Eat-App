@@ -49,8 +49,7 @@
         }
 
 
-
-        .advantages-title {
+        .advantages-title, .definitions {
             margin-top: 20px;
             text-align: center;
             font-size: 35px;
@@ -70,29 +69,34 @@
             text-shadow: 2px 2px rgba(0, 0, 0, 0.25);
 
         }
+
         #social li a {
             font-size: 26px;
             font-weight: bold;
             color: white;
         }
+
         #social li a:hover {
             font-size: 26px;
             font-weight: bold;
             color: lightgray;
         }
-        #social:hover{
-            border-top: solid lightcoral;
-        }
-        #sites:hover{
-            border-top: solid lightcoral;
-        }
-        #app:hover{
-            border-top: solid lightcoral;
-        }
-        #internet:hover{
+
+        #social:hover {
             border-top: solid lightcoral;
         }
 
+        #sites:hover {
+            border-top: solid lightcoral;
+        }
+
+        #app:hover {
+            border-top: solid lightcoral;
+        }
+
+        #internet:hover {
+            border-top: solid lightcoral;
+        }
 
 
     </style>
@@ -189,7 +193,7 @@
                     <p>We crave a good food post, hashtag, tweet and video. That’s why you’ll find #Allrecipes hanging
                         out at lots of cool places. Come visit us at:</p>
                     <div class="social">
-                        <ul >
+                        <ul>
                             <li><a href="#"><i class="fab fa-youtube mr-1"></i>Youtube</a></li>
                             <li><a href="#"><i class="fab fa-facebook-square mr-1"></i>Facebook</a></li>
                             <li><a href="#"><i class="fab fa-twitter mr-1"></i>Twitter</a></li>
@@ -198,6 +202,23 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container">
+            <div class="definitions">
+                DEFINITIONS
+            </div>
+            <p><strong>Periodic eating - </strong>Intermittent fasting has recently become a health trend. It’s claimed
+                to cause weight loss, improve metabolic health, and perhaps even extend lifespan.</p>
+            <p><strong>TDEE - </strong>Total Daily Energy Expenditure (TDEE) is an estimation of how many calories you
+                burn each day including typical exercise.
+
+                TDEE is just BMR with estimations added in. It's the same formula except you add in a multiplier that's
+                dependent on how much "activity" you have in a given day.</p>
+            <p><strong>BMI - </strong>Basal Metabolic Rate (BMR) is how many calories you burn when your body is
+                resting.
+
+                In other words, it's the calories your body needs to keep you alive. This is the bare minimum. Imagine
+                you were in a coma — that's the base level we're talking about here.</p>
         </div>
     </div>
 {% endblock %}

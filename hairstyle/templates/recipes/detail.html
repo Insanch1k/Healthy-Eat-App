@@ -14,17 +14,16 @@
         }
 
         #container_detail {
-            background-color: #a7c68b;
+            background-color: white;
             margin-top: 100px;
             border-radius: 5px;
             padding: 10px;
         }
 
         .title {
-            color: white;
+            color: gray;
             font-size: 27px;
             font-weight: 900;
-            text-shadow: 2px 2px lightgray;
             text-align: center;
         }
 
@@ -62,19 +61,17 @@
         }
 
         .remove_title {
-            color: white;
+            color: gray;
             font-size: 27px;
             font-weight: 900;
-            text-shadow: 2px 2px gray;
             text-align: center;
             font-style: italic;
         }
 
         .add_title {
-            color: white;
+            color: gray;
             font-size: 27px;
             font-weight: 900;
-            text-shadow: 2px 2px gray;
             text-align: center;
             font-style: italic;
         }
@@ -91,27 +88,25 @@
         }
 
         .description_title {
-            color: white;
+            color: gray;
             font-size: 27px;
             font-weight: 900;
-            text-shadow: 2px 2px gray;
             text-align: center;
         }
 
         .step-title {
-            color: white;
+            color: gray;
             font-style: italic;
             font-size: 27px;
             font-weight: 900;
-            text-shadow: 2px 2px gray;
             text-align: center;
         }
 
         .ingredients_title {
-            color: white;
+            color: gray;
             font-size: 27px;
             font-weight: 900;
-            text-shadow: 2px 2px gray;
+
             text-align: center;
             font-style: italic;
         }
@@ -150,7 +145,7 @@
         <hr>
         <div class="ingredients">
             <div class="ingredients_title">INGREDIENTS</div>
-            {{ recipe.ingredients }}
+            {{ recipe.ingredients|linebreaks }}
         </div>
         <hr>
         <div class="step_by_step">

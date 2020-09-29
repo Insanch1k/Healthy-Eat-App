@@ -11,7 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'description',  'created', 'updated']
+    list_display = ['title', 'slug', 'description', 'created', 'updated']
     list_filter = ['created']
     list_editable = ['description', ]
     prepopulated_fields = {'slug': ('title',)}

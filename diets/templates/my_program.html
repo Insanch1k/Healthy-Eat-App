@@ -1,5 +1,5 @@
 {% extends 'barbershop/base_generic.html' %}
-q
+
 {% block title %}My program{% endblock %}
 
 {% block content %}
@@ -7,6 +7,14 @@ q
     <style>
         #container {
             padding: 20px;
+        }
+
+        body {
+            background-image: url("https://st4.depositphotos.com/1001092/22514/i/1600/depositphotos_225149288-stock-photo-asian-food-background.jpg");
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
         }
 
         #diet {
@@ -58,7 +66,8 @@ q
             color: gray;
             font-style: italic;
         }
-        .description_title{
+
+        .description_title {
             font-weight: 900;
             color: white;
             font-style: normal;
@@ -66,63 +75,183 @@ q
             text-shadow: 3px 3px gray;
         }
 
+        .breakfast-title, .dinner-title, .lunch-title, .snack-title {
+            color: white;
+            font-size: 34px;
+            text-align: center;
+        }
+
+        .snacks {
+            padding: 15px;
+            margin: 40px 40px;
+            background-color: #007f5f;
+            border-radius: 10px;
+            opacity: 0.8;
+        }
+
+        .desc {
+            background-color: #B9B9B9;
+            margin-bottom: 50px;
+            border-radius: 10px;
+            padding: 15px;
+            opacity: 0.8;
+            color: white;
+        }
+
+        .description{
+            color: white;
+            padding: 10px;
+            font-size: 34px;
+            text-align: center;
+
+        }
 
     </style>
-    <p>My program</p>
-    <p>{{ time }}</p>
-    <p>{{ time1 }}</p>
+    <div class="container">
+    <div class="description">{{ my_diet.description_of_diet }}</div>
+    </div>
+    <div class="container mt-5">
+        <div class="desc">
+            <div class="breakfast">
+                <div class="breakfast-title">Breakfast</div>
+                <h3>Example universal recipe:</h3>
+                <table class="table table-hover">
+                    <tr>
+                        <td>- Something</td>
+                        <td>100g</td>
+                    </tr>
+                    <tr>
+                        <td>- Something</td>
+                        <td>2 times</td>
+                    </tr>
+                    <tr>
+                        <td>- Something</td>
+                        <td>30g</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="snack">
+                <div class="lunch-title">Snack</div>
+                <table class="table table-hover">
+                    <tr>
+                        <td>Orange</td>
+                        <td>1 time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="lunch">
+                <div class="lunch-title">Lunch</div>
+                <h4>{{ my_diet.breakfast_time }}</h4>
+                <table class="table table-hover">
+                    <tr>
+                        <td>- Something</td>
+                        <td>100g</td>
+                    </tr>
+                    <tr>
+                        <td>- Something</td>
+                        <td>2 times</td>
+                    </tr>
+                    <tr>
+                        <td>- Something</td>
+                        <td>30g</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="snack">
+                <div class="lunch-title">Snack</div>
+                <table class="table table-hover">
+                    <tr>
+                        <td>Orange</td>
+                        <td>1 time</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="dinner">
+                <div class="dinner-title">Dinner</div>
+                <table class="table table-hover">
+                    <tr>
+                        <td>- Something</td>
+                        <td>100g</td>
+                    </tr>
+                    <tr>
+                        <td>- Something</td>
+                        <td>2 times</td>
+                    </tr>
+                    <tr>
+                        <td>- Something</td>
+                        <td>30g</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="d-sm-flex flex-row justify-content-between">
+            <div style="background-color: #007f5f" id="breakfast" class="p-2">
+                <div class="breakfast-title">Breakfast</div>
+                <table style="color:white;" class="table">
+                    {% for b in my_diet.breakfast.all %}
+                        <tr>
+                            <td><img src="{{ b.image.url }}" alt="{{ b.title }}" class="img-thumbnail"></td>
+                            <td>{{ b.calories }}ccal</td>
+                            <td><a href="{% url 'hairstyle:recipe_detail' b.id b.slug %}">Choose</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div style="background-color: #007f5f" class="p-2" id="lunch">
+                <div class="lunch-title">Lunch</div>
+                <table style="color:white;" class="table">
+                    {% for l in my_diet.lunch.all %}
+                        <tr>
+                            <td><img class="img-thumbnail" alt="{{ b.title }}" src="{{ l.image.url }}"></td>
+                            <td>{{ l.calories }}ccal</td>
+                            <td><a href="{% url 'hairstyle:recipe_detail' l.id l.slug %}">Choose</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div style="background-color: #007f5f" class="p-2" id="dinner">
+                <div class="dinner-title">Dinner</div>
+                <table style="color:white;" class="table">
+                    {% for d in my_diet.dinner.all %}
+                        <tr>
+                            <td><img class="img-thumbnail" src="{{ d.image.url }}"></td>
+                            <td>{{ d.calories }}ccal</td>
+                            <td><a href="{% url 'hairstyle:recipe_detail' d.id d.slug %}">Choose</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="snacks">
+            <div class="snack-title">Snacks</div>
+            <table class="table table-hover mt-3">
+                <tr>
+                    <td>peanuts</td>
+                    <td>100g</td>
+                    <td>Choose</td>
+                </tr>
+                <tr>
+                    <td>peanuts</td>
+                    <td>100g</td>
+                    <td>Choose</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
 
     <div id="container" class="container">
         <div class="container text-center" id="description">
-            <div class="program_title">
-                {{ my_diet.title }}
-            </div>
+
             <form method="POST">
                 {% csrf_token %}
+                 <h4>{{ my_diet.date_subscribe }}</h4>
                 <input class="btn btn-success" type="submit" value="Unsubscribe">
             </form>
-            <div class="program_description">
-                <div class="description_title">
-                   DESCRIPTION
-                </div>
-                 {{ my_diet.description_of_diet }}
-            </div>
-        </div>
-        <div class="container" id="meals">
-            <div class="d-sm-flex flex-row justify-content-between">
-                <div class="p-2" id="breakfast">
-                    <h2 class="title text-center">BREAKFAST<small> at {{ my_diet.breakfast_time }}</small></h2>
-                    {% for b in my_diet.breakfast.all %}
-                        <a href="{{ b.get_absolute_url }}">{{ b.title }}</a>
-                        <p>{{ b.calories }}</p>
-                        <hr>
-                    {% endfor %}
-                </div>
-                <div class="p-2" id="lunch">
-                    <h2 class="title text-center">LUNCH<small> at {{ my_diet.lunch_time }}</small></h2>
-                    {% for l in my_diet.lunch.all %}
-                        <a href="{{ l.get_absolute_url }}">{{ l.title }}</a>
-                        <p>{{ l.calories }}</p>
-                        <hr>
-                    {% endfor %}
-                </div>
-                <div class=" p-2" id="dinner">
-                    <h2 class="title text-center">DINNER<small> at {{ my_diet.dinner_time }}</small></h2>
-                    {% for d in my_diet.dinner.all %}
-                        <a href="{{ d.get_absolute_url }}">{{ d.title }}</a>
-                        <p>{{ d.calories }}</p>
-                        <hr>
-                    {% endfor %}
-                </div>
-            </div>
-            <div id="diet" class="container mt-5">
-                <div class="container text-center" id="bottom_nav">
-                    <a href="{% url 'diets:settings' %}" class="mr-4">SETTINGS</a>
-                    <a href="#">CALENDAR</a>
-                    <a href="#" class="ml-4">INFORMATION</a>
-                </div>
-            </div>
+
         </div>
     </div>
 

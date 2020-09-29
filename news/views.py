@@ -8,7 +8,7 @@ from .forms import CommentForm
 
 class MainView(ListView):
     template_name = 'barbershop/home.html'
-    paginate_by = 2
+    paginate_by = 3
     model = Post
 
     def get_context_data(self, *, object_list=None, **kwargs):

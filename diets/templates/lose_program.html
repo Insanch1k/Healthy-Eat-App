@@ -4,84 +4,202 @@
 {% block title %}Program Lose Weight{% endblock %}
 
 {% block  content %}
-    <div class="container mt-4">
-        <div class="program-title">Lose Weight</div>
-        <div class="program-description">Lose WeightLose WeightLose WeightLose WeightLose WeightLose WeightLose Weight
+
+    <style>
+        body {
+            color: white;
+            background-image: url("https://s3.envato.com/files/213888016/FM4_171_V.jpg");
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .info {
+            opacity: 0.6;
+            background-color: #74593A;
+        }
+
+        .breakfast, .lunch, .dinner {
+            background: #686354;
+            width: 380px;
+            height: 450px;
+            padding: 10px;
+            margin: 20px 20px 20px 20px;
+            display: inline-block;
+            border-radius: 15px;
+            position: relative;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .breakfast-title, .dinner-title, .lunch-title, .snack-title {
+            font-size: 30px;
+            color: white;
+            text-shadow: 2px 2px gray;
+        }
+
+
+        .info {
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .weight-lose {
+            padding: 65px 0;
+            text-align: center;
+            border-radius: 50%;
+            border-style: solid;
+            border-width: 5px;
+            border-color: #30BF61;
+            width: 200px;
+            height: 200px;
+            display: table;
+            margin: 0 auto;
+        }
+
+        .weight-lose-value {
+            font-size: 35px;
+        }
+
+        .subscribe {
+            padding: 15px;
+        }
+
+        #get-program {
+            background-image: linear-gradient(green, cadetblue);
+            border-radius: 35px;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 140px;
+        }
+
+        #get-program:hover {
+            background-image: linear-gradient(cadetblue, green);
+            border-radius: 35px;
+        }
+
+        #already_subscribed {
+            text-align: center;
+        }
+
+    </style>
+
+    <div class="info">
+        <h1>For lose weight you have to eat <strong style="color: #0f9c2d">{{ value }} </strong>per day.</h1>
+        <div class="weight-lose">
+            <div class="weight-lose-value">-2 kg</div>
         </div>
-        <div class="d-sm-flex justify-content-sm-around">
-            <div class="p-2" style="background-color: #B9B9B9">
-                <div class="breakfast-title">Breakfast</div>
-                <div class="breakfast-wrap">
-                    <p>{{ amount_of_fat_for_breakfast }}</p>
-                    <p>{{ amount_of_protein_for_breakfast }}</p>
-                    <p>{{ amount_of_carbs_for_breakfast }}</p>
-                </div>
-            </div>
-            <div class="p-2">
-                <div class="lunch-title">Lunch</div>
-                <div class="lunch-wrap">
-                    <p>{{ amount_of_fat_for_lunch }}</p>
-                    <p>{{ amount_of_protein_for_lunch }}</p>
-                    <p>{{ amount_of_carbs_for_lunch }}</p>
-                </div>
-            </div>
-            <div class="p-2" style="background-color: #B9B9B9">
-                <div class="dinner-title">Dinner</div>
-
-            </div>
-
-
+        <h3 style="color: #30BF61">Up to minus 2 kg in 30 days</h3>
+        <h3>Using eating program of stay-fit</h3>
+    </div>
+    <div class="container-fluid">
+        <div class="breakfast">
+            <div class="breakfast-title">TIPS FOR BREAKFAST</div>
+            <p>Recommended calories for breakfast is <strong
+                    style=" font-size: 22px; color: #0f9c2d; font-weight: bold">{{ breakfast_calories }}</strong></p>
+            <hr>
+            <p>Protein: {{ amount_of_protein_for_breakfast }}</p>
+            <p>Carbs: {{ amount_of_carbs_for_breakfast }}</p>
+            <p>Fat: {{ amount_of_fat_for_breakfast }}</p>
+            <hr>
+            <p>After breakfast you can grab some snack on approximately {{ snack_calories }} calories</p>
+            <hr>
+            <p><strong>Recommendation:</strong>More carbs than protein, in morning your body needs carbs for energy</p>
         </div>
-        <form method="POST">
-            {% csrf_token %}
-            {% if is_subscribe %}
-                <p>You have been already subscribe, you can check this -> <a href="{% url 'diets:my_program' %}">settings
-                    diet</a></p>
+        <div class="lunch">
+            <div class="lunch-title">TIPS FOR LUNCH</div>
+            <p>Recommended calories for lunch is <strong
+                    style="font-size: 22px; color: #0f9c2d">{{ lunch_calories2 }}</strong></p>
+            <hr>
+            <p>Protein: {{ amount_of_protein_for_lunch }}</p>
+            <p>Carbs: {{ amount_of_carbs_for_lunch }}</p>
+            <p>Fa: {{ amount_of_fat_for_lunch }}</p>
+            <hr>
+            <p>After lunch you can grab some snack on approximately {{ snack2_calories }} calories</p>
+            <hr>
+            {% if lunch_calories > 900 %}
+                <p><strong>Recommendation: </strong>Good way is divide on two times:
+                    approximately {{ lunch_calories }}</p>
             {% else %}
-                <input type="submit" class="btn btn-success" value="Subscribe">
+                <p>You can eat one eating with this amount of calories {{ lunch_calories }}</p>
+                <p></p>
             {% endif %}
-        </form>
+
+        </div>
+        <div class="dinner">
+            <div class="dinner-title">TIPS FOR DINNER</div>
+            <p>Recommended calories for dinner is <strong
+                    style="font-size: 22px; color: darkgreen">{{ dinner_calories }}</strong></p>
+            <hr>
+            <p>Protein: {{ amount_of_protein_for_dinner }}</p>
+            <p>Carbs: {{ amount_of_carbs_for_dinner }}</p>
+            <p>Fat: {{ amount_of_fat_for_dinner }}</p>
+            <hr>
+            <p>After dinner the best way is dont eat before sleeping. During reduction calories must be periodic
+                starvation</p>
+            <hr>
+            <p><strong>Recommendation: more protein less carbs, because your body needs protein during sleeping</strong>
+            </p>
+        </div>
     </div>
     <div class="container">
-    <h1 class="text-center">Recommendations recipes:</h1>
-
-    <hr>
+        {% for b in breakfast_recipes %}
+            <p>{{ b.title }} -b</p>
+        {% endfor %}
+        {% for l in lunch_recipes %}
+            <p>{{ l.title }} -l</p>
+        {% endfor %}
+        {% for d in dinner_recipes %}
+            <p>{{ d.title }} -d</p>
+        {% endfor %}
     </div>
-    <h2>{{ value }}</h2>
     <div class="container">
-        <div class="program-title">Lose Weight</div>
-        <div class="description">
-            <p>{{ breakfast_calories }}</p>
-            <p>{{ lunch_calories }}</p>
-            <p>{{ dinner_calories }}</p>
-            <hr>
-            <p>Pro for br:{{ amount_of_protein }}</p>
-            <p>Carbs for br: {{ amount_of_carbs }}</p>
-            <p>Fat for br:{{ amount_of_fat }}</p>
-            <hr>
-            {% if lunch_calories > 1000 %}
-                <p>More then 1k</p>
-            {% else %}
-                <p>Less then 1k</p>
-            {% endif %}
-            <div class="breakfast">
-                <h2>BREAKFAST:</h2>
-                {% for b in breakfast_recipes %}
-                    <p>{{ b.title }}</p>
-                {% endfor %}
+        <div class="snacks">
+            <div class="snack-title text-center">Get a personalized nutrition program,
+                to achieve the desired result
             </div>
-            <div class="dinner">
-                <h2>DINNER: </h2>
-                {% for d in dinner_recipes %}
-                    <p>{{ d.title }}</p>
-                {% endfor %}
+            <div class="subscribe">
+                <p style="font-size: 30px"><i class="far fa-check-circle"></i> A clear plan to achieve the goal</p>
+                <p style="font-size: 30px"><i class="far fa-check-circle"></i> Simple recipes: ingredients are easy to
+                    find and prepare</p>
+                <p style="font-size: 30px"><i class="far fa-check-circle"></i> The menu is designed based on your
+                    personal characteristics</p>
             </div>
-            <div class="lunch">
-                <h2>LUNCH: </h2>
-                {% for l in lunch_recipes %}
-                    <p>{{ l.title }}</p>
-                {% endfor %}
+
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="breakfast">Time of breakfast:</label>
+                            <input type="time" class="form-control" id="breakfast" name="breakfast_time">
+                        </div>
+                        <div class="form-group">
+                            <label for="lunch">Time of lunch:</label>
+                            <input type="time" class="form-control" id="lunch" name="lunch_time">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dinner">Time of dinner:</label>
+                            <input name="dinner_time" type="time" class="form-control" id="dinner">
+                        </div>
+                        {% if is_subscribe %}
+                            <p id="already_subscribed"><i class="fas fa-check mr-2"></i>You have been subscribed</p>
+                        {% else %}
+
+                            <div class="text-center"><input id="get-program" class="btn btn-success" type="submit"
+                                                            value="GET PROGRAM"></div>
+
+                        {% endif %}
+                    </form>
+                </div>
+                <div class="col-sm-4"></div>
             </div>
+
         </div>
     </div>
 {% endblock %}

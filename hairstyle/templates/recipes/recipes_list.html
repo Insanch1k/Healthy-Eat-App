@@ -12,7 +12,6 @@
         }
 
 
-
         #recipe {
             color: black;
             background-color: white;
@@ -64,30 +63,18 @@
                 {% endfor %}
 
                 {{ r }}
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item disabled">
-                            <a class="pagination-action" href="?page=1">
-                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-                            </a>
-                            <a class="pagination-action" href="?page={{ page_obj.previous_page_number }}">
-                                <i class="fa fa-angle-left" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    {% endif %}
-                    <span class="pagination-current">{{ page_obj.number }}</span>
-                    <span class="pagination-of">of</span>
-                    <span class="pagination-total">{{ page_obj.paginator.num_pages }}</span>
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="pagination-action" href="?page={{ page_obj.next_page_number }}">
-                                <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
-                            <a class="pagination-action" href="?page={{ page_obj.paginator.num_pages }}">
-                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                            </a>
-                        </li>
-
-                    {% endif %}
+                <ul>
+                    {% for p in recipe_list.paginator.page_range %}
+                        {% if recipe_list.number == p %}
+                            <li class="page-item active">
+                                <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item active">
+                                <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
         </div>

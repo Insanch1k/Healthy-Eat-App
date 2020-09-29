@@ -123,7 +123,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">AGE:</label>
                         <input type="number" class="form-control" id="exampleFormControlInput1"
-                               placeholder="age.." name="age">
+                               placeholder="age.." name="age" min="18" max="55">
                     </div>
 
                     <div class="form-check form-check-inline">
@@ -141,12 +141,12 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">HEIGHT:</label>
                         <input type="number" class="form-control" id="exampleFormControlInput1"
-                               placeholder="height..." name="height" step="0.1">
+                               placeholder="height..." name="height" step="0.1" min="160" max="220">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">WEIGHT:</label>
                         <input type="number" class="form-control" id="exampleFormControlInput1"
-                               placeholder="weight..." name="weight" step="0.1">
+                               placeholder="weight..." name="weight" step="0.1" min="50" max="120">
                     </div>
                     <label for="activity">PHYSICAL ACTIVITY PER DAY:</label>
                     <select name="drop" id="activity" class="form-control">
@@ -160,21 +160,6 @@
                     </select>
                     <div class="calculate text-center mt-2">
                         <input id="calculate" type="submit" value="CALCULATE" class="btn btn-success">
-                    </div>
-                    <h2>Enter amount for meals to program be able to calculate diet</h2>
-                    <div class="form-group">
-                        <label for="amount_breakfast">AMOUNT OF BREAKFASTS</label>
-                        <select class="form-control" id="amount_breakfast" name="num_breakfast">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                    </div>
-                    <div class="form_group">
-                        <label for="amount_lunch">AMOUNT OF LUNCH</label>
-                        <select class="form-control" id="amount_lunch" name="num_lunch">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
                     </div>
                 </form>
             </div>
