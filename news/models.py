@@ -2,9 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-
-
 '''Table for description Posts'''
+
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
@@ -24,10 +23,11 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('news:article_detail', args=[self.id, self.slug])
-    
-    
+
+
 '''Table for description Comments'''
-    
+
+
 class Comment(models.Model):
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
