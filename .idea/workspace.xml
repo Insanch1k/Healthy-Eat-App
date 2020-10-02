@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9645b561-3292-4ea7-8196-f43c698a9037" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="9645b561-3292-4ea7-8196-f43c698a9037" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -230,11 +227,19 @@
       <screen x="0" y="27" width="1366" height="674" />
     </state>
     <state width="1366" height="216" key="GridCell.Tab.0.right/0.27.1366.674@0.27.1366.674" timestamp="1593026111623" />
+    <state x="314" y="125" width="728" height="475" key="MultipleFileMergeDialog" timestamp="1601635875148">
+      <screen x="0" y="27" width="1366" height="674" />
+    </state>
+    <state x="314" y="125" width="728" height="475" key="MultipleFileMergeDialog/0.27.1366.674@0.27.1366.674" timestamp="1601635875148" />
     <state x="172" y="27" width="1012" height="674" key="SettingsEditor" timestamp="1601142668525">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
     <state x="172" y="27" width="1012" height="674" key="SettingsEditor/0.27.1366.674/1366.0.1920.1080@0.27.1366.674" timestamp="1598618965427" />
     <state x="172" y="27" width="1012" height="674" key="SettingsEditor/0.27.1366.674@0.27.1366.674" timestamp="1601142668525" />
+    <state x="278" y="99" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601635814877">
+      <screen x="0" y="27" width="1366" height="674" />
+    </state>
+    <state x="278" y="99" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.674@0.27.1366.674" timestamp="1601635814877" />
     <state x="674" y="26" width="672" height="678" key="search.everywhere.popup" timestamp="1600902216498">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
