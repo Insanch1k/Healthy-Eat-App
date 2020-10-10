@@ -15,7 +15,6 @@ Application for healthy eating, written in Python using framework Django.
 ### Main application possibilities:
 - Calculation of daily calories based on user's height, weight and activity
 - Calculate of index body weight 
-- Decide normal weight for height or no 
 - After calculating user can see all results 
 - Based on the calculated calories, calculate the diet for lose weight
 - Based on the calculated calories, calculate the diet for stable weight

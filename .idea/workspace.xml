@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9645b561-3292-4ea7-8196-f43c698a9037" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +37,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Cython" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -192,7 +196,10 @@
       <workItem from="1601383259905" duration="3445000" />
       <workItem from="1601633240041" duration="374000" />
       <workItem from="1601633644650" duration="70000" />
-      <workItem from="1601639079096" duration="289000" />
+      <workItem from="1601639079096" duration="380000" />
+      <workItem from="1601807560134" duration="31000" />
+      <workItem from="1602185818266" duration="544000" />
+      <workItem from="1602349161125" duration="2221000" />
     </task>
     <servers />
   </component>
@@ -200,10 +207,6 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="381" y="165" width="735" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593529780866">
-      <screen x="0" y="27" width="1366" height="674" />
-    </state>
-    <state x="381" y="165" width="735" height="396" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1366.674@0.27.1366.674" timestamp="1593529780866" />
     <state x="173" y="112" width="370" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597678728047">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
@@ -215,35 +218,23 @@
     <state x="647" y="180" width="374" height="484" key="FileChooserDialogImpl/0.27.1366.674/1366.0.1920.1080@0.27.1366.674" timestamp="1598460949510" />
     <state x="466" y="121" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.674@0.27.1366.674" timestamp="1600350127527" />
     <state x="1556" y="180" key="FileChooserDialogImpl/0.27.3286.674@0.27.3286.674" timestamp="1595685644791" />
-    <state width="1366" height="216" key="GridCell.Tab.0.bottom" timestamp="1593026111623">
+    <state width="263" height="500" key="HiddenNamespacesPopup" timestamp="1602349449692">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
-    <state width="1366" height="216" key="GridCell.Tab.0.bottom/0.27.1366.674@0.27.1366.674" timestamp="1593026111623" />
-    <state width="1366" height="216" key="GridCell.Tab.0.center" timestamp="1593026111623">
-      <screen x="0" y="27" width="1366" height="674" />
-    </state>
-    <state width="1366" height="216" key="GridCell.Tab.0.center/0.27.1366.674@0.27.1366.674" timestamp="1593026111623" />
-    <state width="1366" height="216" key="GridCell.Tab.0.left" timestamp="1593026111622">
-      <screen x="0" y="27" width="1366" height="674" />
-    </state>
-    <state width="1366" height="216" key="GridCell.Tab.0.left/0.27.1366.674@0.27.1366.674" timestamp="1593026111622" />
-    <state width="1366" height="216" key="GridCell.Tab.0.right" timestamp="1593026111623">
-      <screen x="0" y="27" width="1366" height="674" />
-    </state>
-    <state width="1366" height="216" key="GridCell.Tab.0.right/0.27.1366.674@0.27.1366.674" timestamp="1593026111623" />
+    <state width="263" height="500" key="HiddenNamespacesPopup/0.27.1366.674@0.27.1366.674" timestamp="1602349449692" />
     <state x="314" y="125" width="728" height="475" key="MultipleFileMergeDialog" timestamp="1601635875148">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
     <state x="314" y="125" width="728" height="475" key="MultipleFileMergeDialog/0.27.1366.674@0.27.1366.674" timestamp="1601635875148" />
-    <state x="172" y="27" width="1012" height="674" key="SettingsEditor" timestamp="1601142668525">
+    <state x="250" y="27" width="1012" height="674" key="SettingsEditor" timestamp="1602350186237">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
     <state x="172" y="27" width="1012" height="674" key="SettingsEditor/0.27.1366.674/1366.0.1920.1080@0.27.1366.674" timestamp="1598618965427" />
-    <state x="172" y="27" width="1012" height="674" key="SettingsEditor/0.27.1366.674@0.27.1366.674" timestamp="1601142668525" />
-    <state x="278" y="99" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601635814877">
+    <state x="250" y="27" width="1012" height="674" key="SettingsEditor/0.27.1366.674@0.27.1366.674" timestamp="1602350186237" />
+    <state x="278" y="99" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1602351367754">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
-    <state x="278" y="99" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.674@0.27.1366.674" timestamp="1601635814877" />
+    <state x="278" y="99" width="800" height="528" key="Vcs.Push.Dialog.v2/0.27.1366.674@0.27.1366.674" timestamp="1602351367754" />
     <state x="674" y="26" width="672" height="678" key="search.everywhere.popup" timestamp="1600902216498">
       <screen x="0" y="27" width="1366" height="674" />
     </state>
