@@ -34,17 +34,17 @@ INSTALLED_APPS = [
     'hairstyle.apps.HairstyleConfig',
     'notes.apps.NotesConfig',
     'news.apps.NewsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
     'embed_video',
-    'social_django',
     'django_celery_results',
     'django_celery_beat',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -119,9 +119,6 @@ USE_L10N = True
 USE_TZ = True
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.linkedin.LinkedinOAuth2',
-    'social_core.backends.instagram.InstagramOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 # Static files (CSS, JavaScript, Images)

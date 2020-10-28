@@ -117,7 +117,7 @@ def recipe_list(request):
     categories = Category.objects.all()
     recipes = Recipe.objects.all()
     r = recipes.count()
-    paginator = Paginator(recipes, 3)
+    paginator = Paginator(recipes, 1)
     page = request.GET.get('page')
     recipe_list = None
     try:
