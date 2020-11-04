@@ -282,7 +282,7 @@ def lose_weight(request, value):
     snack2_calories = calculate_snack_calories(value)
     breakfast_time = None
     if lunch_calories > 900:
-        lunch_calories /= 2
+        divided_lunch_calories = lunch_calories / 2
     breakfast_recipes = calculate_recipes_for_breakfast_for_lose_weight_program(
         amount_of_carbs,
         amount_of_fat,
@@ -308,7 +308,7 @@ def lose_weight(request, value):
         new_program = Diet.objects.create(title='LoseWeight',
                                           slug='loseweightfor' + request.user.username,
                                           subscriber=request.user,
-                                          description_of_diet='descriptionAnton',
+                                          description_of_diet='Description For Lose Weight Program',
                                           breakfast_time=breakfast_time,
                                           lunch_time=lunch_time,
                                           dinner_time=dinner_time)
@@ -319,7 +319,7 @@ def lose_weight(request, value):
             new_program.breakfast.add(b.id)
         for lunch in lunch_recipes:
             new_program.lunch.add(lunch.id)
-        # send_confirm(new_program)
+        send_confirm(new_program)
         # create new record in database with recipes for every user
         return redirect('hairstyle:my_profile')
 
@@ -327,6 +327,7 @@ def lose_weight(request, value):
         'value': value,
         'is_subscribe': is_subscribe,
         'breakfast_calories': breakfast_calories,
+        'divided_lunch_calories': divided_lunch_calories,
         'lunch_calories': lunch_calories,
         'dinner_calories': dinner_calories,
         'amount_of_protein_for_breakfast': round(amount_of_protein * 0.3, 1),

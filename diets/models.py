@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.contrib.auth.models import User
 from hairstyle.models import Recipe
@@ -6,6 +5,7 @@ import datetime
 from twilio.rest import Client
 
 '''Table for description of Weight for every users'''
+
 
 class Weight(models.Model):
     user = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE)
@@ -15,8 +15,10 @@ class Weight(models.Model):
     class Meta:
         ordering = ('created',)
 
+
 '''Table for description of Diet'''
-        
+
+
 class Diet(models.Model):
     title = models.CharField(blank=True, max_length=100)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
@@ -37,4 +39,3 @@ class Diet(models.Model):
 
     def __str__(self):
         return self.title
-
