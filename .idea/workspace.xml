@@ -21,10 +21,19 @@
   <component name="ChangeListManager">
     <list default="true" id="9645b561-3292-4ea7-8196-f43c698a9037" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diets/pswd.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/pswd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diets/templates/gain_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/gain_program.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diets/templates/lose_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/lose_program.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diets/templates/my_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/my_program.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diets/templates/stable_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/stable_program.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diets/templates/weight/weight_progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/weight/weight_progress.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diets/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hairstyle/templates/barbershop/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/barbershop/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hairstyle/templates/barbershop/base_generic.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/barbershop/base_generic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hairstyle/templates/profile/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/profile/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/templates/posts/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/news/templates/posts/post_detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +67,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Cython" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/react-quiz" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -223,7 +235,14 @@
       <workItem from="1603898389756" duration="5937000" />
       <workItem from="1603912359158" duration="298000" />
       <workItem from="1603912860897" duration="20000" />
-      <workItem from="1604506057791" duration="2470000" />
+      <workItem from="1604506057791" duration="3410000" />
+      <workItem from="1604839151071" duration="1282000" />
+      <workItem from="1604924240907" duration="2600000" />
+      <workItem from="1605002971487" duration="804000" />
+      <workItem from="1605017279911" duration="696000" />
+      <workItem from="1605177287741" duration="6983000" />
+      <workItem from="1605204745685" duration="104000" />
+      <workItem from="1606048336537" duration="159000" />
     </task>
     <servers />
   </component>
@@ -250,13 +269,12 @@
       <screen x="0" y="27" width="1366" height="674" />
     </state>
     <state x="173" y="112" width="370" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.674/1366.0.1920.1080@0.27.1366.674" timestamp="1597678728047" />
-    <state x="416" y="112" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.3286.674@0.27.3286.674" timestamp="1595696974232" />
-    <state x="466" y="121" width="374" height="484" key="FileChooserDialogImpl" timestamp="1600350127527">
-      <screen x="0" y="27" width="1366" height="674" />
+    <state x="466" y="103" width="374" height="484" key="FileChooserDialogImpl" timestamp="1605204849545">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="466" y="103" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1605204849545" />
     <state x="647" y="180" width="374" height="484" key="FileChooserDialogImpl/0.27.1366.674/1366.0.1920.1080@0.27.1366.674" timestamp="1598460949510" />
     <state x="466" y="121" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.674@0.27.1366.674" timestamp="1600350127527" />
-    <state x="1556" y="180" key="FileChooserDialogImpl/0.27.3286.674@0.27.3286.674" timestamp="1595685644791" />
     <state width="263" height="500" key="HiddenNamespacesPopup" timestamp="1602349449692">
       <screen x="0" y="27" width="1366" height="674" />
     </state>

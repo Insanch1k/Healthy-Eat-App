@@ -91,7 +91,7 @@
         <div class="breakfast">
             <div class="breakfast-title">TIPS FOR BREAKFAST{{ value }}</div>
             <p>Recommended calories for breakfast is <strong
-                    style=" font-size: 22px; color: #0f9c2d; font-weight: bold">{{ breakfast_calories }}</strong></p>
+                    style=" font-size: 22px; font-weight: bold">{{ breakfast_calories }}</strong></p>
             <hr>
             <p>Protein: {{ amount_of_protein_for_breakfast }}</p>
             <p>Carbs: {{ amount_of_carbs_for_breakfast }}</p>
@@ -104,7 +104,7 @@
         <div class="lunch">
             <div class="lunch-title">TIPS FOR LUNCH</div>
             <p>Recommended calories for lunch is <strong
-                    style="font-size: 22px; color: #0f9c2d">{{ lunch_calories2 }}</strong></p>
+                    style="font-size: 22px">{{ lunch_calories }}</strong></p>
             <hr>
             <p>Protein: {{ amount_of_protein_for_lunch }}</p>
             <p>Carbs: {{ amount_of_carbs_for_lunch }}</p>
@@ -114,7 +114,7 @@
             <hr>
             {% if lunch_calories > 900 %}
                 <p><strong>Recommendation: </strong>Good way is divide on two times:
-                    approximately {{ lunch_calories }}</p>
+                    approximately {{ lunch_calories2 }}</p>
             {% else %}
                 <p>You can eat one eating with this amount of calories {{ lunch_calories }}</p>
                 <p></p>
@@ -124,7 +124,7 @@
         <div class="dinner">
             <div class="dinner-title">TIPS FOR DINNER</div>
             <p>Recommended calories for dinner is <strong
-                    style="font-size: 22px; color: darkgreen">{{ dinner_calories }}</strong></p>
+                    style="font-size: 22px">{{ dinner_calories }}</strong></p>
             <hr>
             <p>Protein: {{ amount_of_protein_for_dinner }}</p>
             <p>Carbs: {{ amount_of_carbs_for_dinner }}</p>

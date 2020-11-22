@@ -50,7 +50,12 @@
             </div>
         {% endif %}
         <div class="mt-5">
-            <h3>{{ post.comments.count }} Comments</h3>
+
+            {% if post.comments.count > 1 %}
+                <h3>{{ post.comments.count }} Comments</h3>
+            {% else %}
+                <h3>{{ post.comments.count }} Comment</h3>
+            {% endif %}
             {% for c in comments %}
 
                 <p id="owner" class="mt-5"><i class="fas fa-user mr-2"></i>{{ c.owner }}</p>

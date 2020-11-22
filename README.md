@@ -25,3 +25,6 @@ Application for healthy eating, written in Python using framework Django.
 - Every day user will get sms with reminder before eating (Twilio, Celery, Redis)
 - In any moment user can unsubscribe chosen program 
 - In profile page user can see his weight progress on awesome graph (Chart.js)
+
+
+

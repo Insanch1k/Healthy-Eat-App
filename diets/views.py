@@ -123,13 +123,13 @@ def gain_weight_program(request, value):
     snack_calories = calculate_snack_calories(value)
     snack_calories2 = calculate_snack_calories(value)
     # we calculate amount carbs, protein and  fat for all day
-    amount_of_carbs = (value * 0.55) / 4
+    amount_of_carbs = (value * 0.5) / 4
     amount_of_fat = (value * 0.2) / 9
     amount_of_protein = (value * 0.25) / 4
 
     # checking if there is a need to split lunch in 2 times
     if lunch_calories > 1000:
-        lunch_calories /= 2
+        lunch_calories2 /= 2
 
     # using functions from diets_service.py for calculate breakfast, lunch and dinner recipes
     breakfast_recipes = calculate_recipes_for_breakfast_for_gain_weight_program(amount_of_carbs, amount_of_fat,
@@ -185,7 +185,7 @@ def gain_weight_program(request, value):
         'amount_of_fat_for_breakfast': round(amount_of_fat * 0.4, 1),
         'amount_of_fat_for_lunch': round(amount_of_fat * 0.4, 1),
         'amount_of_fat_for_dinner': round(amount_of_fat * 0.2, 1),
-        'amount_of_carbs_for_breakfast': round(amount_of_carbs * 0.4, 1),
+        'amount_of_carbs_for_breakfast': round(amount_of_carbs * 0.3, 1),
         'amount_of_carbs_for_lunch': round(amount_of_carbs * 0.4, 1),
         'amount_of_carbs_for_dinner': round(amount_of_carbs * 0.2, 1),
         'snack_calories': snack_calories,
@@ -206,6 +206,10 @@ def stable_weight_program(request, value):
     amount_of_carbs = (value * 0.55) / 4
     amount_of_fat = (value * 0.2) / 9
     amount_of_protein = (value * 0.25) / 4
+
+    if lunch_calories > 900:
+        lunch_calories2 /= 2
+
     breakfast_recipes = calculate_recipes_for_breakfast_for_stable_weight_program(amount_of_carbs, amount_of_fat,
                                                                                   amount_of_protein,
                                                                                   breakfast_calories)
@@ -283,6 +287,7 @@ def lose_weight(request, value):
     breakfast_time = None
     if lunch_calories > 900:
         divided_lunch_calories = lunch_calories / 2
+    # Add divided lunch calories to function for finding recipes by amount of calories
     breakfast_recipes = calculate_recipes_for_breakfast_for_lose_weight_program(
         amount_of_carbs,
         amount_of_fat,
