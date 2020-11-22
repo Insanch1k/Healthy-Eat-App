@@ -56,6 +56,7 @@ def calculate_recipes_for_lunch_for_stable_weight_program(amount_of_carbs, amoun
                                                           lunch_calories):
     lunch_recipes = Recipe.objects.filter(category__name='Dinner',
                                           calories__range=(lunch_calories - 70, lunch_calories + 70))
+    return lunch_recipes
 
 
 '''Functions below for calculate amount of calories for each eating'''

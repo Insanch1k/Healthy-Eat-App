@@ -324,7 +324,7 @@ def lose_weight(request, value):
             new_program.breakfast.add(b.id)
         for lunch in lunch_recipes:
             new_program.lunch.add(lunch.id)
-        send_confirm(new_program)
+        # send_confirm(new_program)
         # create new record in database with recipes for every user
         return redirect('hairstyle:my_profile')
 

@@ -21,19 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9645b561-3292-4ea7-8196-f43c698a9037" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/pswd.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/pswd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/templates/gain_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/gain_program.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diets/diets_services.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/diets_services.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diets/templates/calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/calculator.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diets/templates/lose_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/lose_program.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/templates/my_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/my_program.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diets/templates/stable_program.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/stable_program.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diets/templates/weight/weight_progress.html" beforeDir="false" afterPath="$PROJECT_DIR$/diets/templates/weight/weight_progress.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diets/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/diets/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/templates/barbershop/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/barbershop/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/templates/barbershop/base_generic.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/barbershop/base_generic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hairstyle/templates/profile/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/hairstyle/templates/profile/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/templates/posts/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/news/templates/posts/post_detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +235,7 @@
       <workItem from="1605017279911" duration="696000" />
       <workItem from="1605177287741" duration="6983000" />
       <workItem from="1605204745685" duration="104000" />
-      <workItem from="1606048336537" duration="159000" />
+      <workItem from="1606048336537" duration="1719000" />
     </task>
     <servers />
   </component>

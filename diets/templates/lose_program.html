@@ -176,16 +176,16 @@
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="breakfast">Time of breakfast:</label>
-                            <input type="time" class="form-control" id="breakfast" name="breakfast_time">
+                            <input type="time" class="form-control" id="breakfast" name="breakfast_time" required>
                         </div>
                         <div class="form-group">
                             <label for="lunch">Time of lunch:</label>
-                            <input type="time" class="form-control" id="lunch" name="lunch_time">
+                            <input type="time" class="form-control" id="lunch" name="lunch_time" required>
                         </div>
 
                         <div class="form-group">
                             <label for="dinner">Time of dinner:</label>
-                            <input name="dinner_time" type="time" class="form-control" id="dinner">
+                            <input name="dinner_time" type="time" class="form-control" id="dinner" required>
                         </div>
                         {% if is_subscribe %}
                             <p id="already_subscribed"><i class="fas fa-check mr-2"></i>You have been subscribed</p>
