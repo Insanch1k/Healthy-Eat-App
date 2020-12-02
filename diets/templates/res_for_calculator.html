@@ -255,7 +255,7 @@
         <div class="col-sm-2">
 
         </div>
-
+        {% if user.is_authenticated %}
         <div class="container col-sm-8">
 
             <div data-aos="fade-up" class="card-deck text-center" style="margin-top: 100px">
@@ -295,6 +295,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         <div class="col-sm-2">
 
         </div>
