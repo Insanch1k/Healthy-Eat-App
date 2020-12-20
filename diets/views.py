@@ -72,10 +72,6 @@ def delete_weight(request, id):
 
 
 def calculator(request):
-    # bmr - is the total number of calories that your body needs to perform basic, life-sustaining functions.
-
-    # tdee - is an estimation of how many calories you burn per day when exercise is taken into account.
-
     if request.method == 'POST':
         activity = request.POST['drop']
         sex = request.POST['sex']
@@ -202,7 +198,7 @@ def stable_weight_program(request, value):
     lunch_calories2 = calculate_lunch_calories(value)
     snack_calories = calculate_snack_calories(value)
     snack2_calories = calculate_snack_calories(value)
-    # we calculate amount carbs, protein and  fat for all day
+
     amount_of_carbs = (value * 0.55) / 4
     amount_of_fat = (value * 0.2) / 9
     amount_of_protein = (value * 0.25) / 4
