@@ -50,10 +50,10 @@
 
                             <p>{{ rec.description|truncatechars:100 }}<a href="{{ rec.get_absolute_url }}">Read more</a>
                             </p>
-                            <p><strong>Amount of calories: {{ rec.calories }}</strong></p>
-                            <p>Protein: {{ rec.protein }}</p>
-                            <p>Carbohydrates: {{ rec.carbohydrates }}</p>
-                            <p>Fat: {{ rec.fat }}</p>
+                            <p><strong>Amount of calories: {{ rec.calories }} ccal /100g</strong></p>
+                            <p>Protein: {{ rec.protein }}g /100g</p>
+                            <p>Carbohydrates: {{ rec.carbohydrates }}g /100g</p>
+                            <p>Fat: {{ rec.fat }}g /100g</p>
                         </div>
                         <div class="col-sm-6">
                             <img class="img-thumbnail"

@@ -72,6 +72,7 @@ def delete_weight(request, id):
 
 
 def calculator(request):
+    perfect_weight = None
     if request.method == 'POST':
         activity = request.POST['drop']
         sex = request.POST['sex']
@@ -79,16 +80,21 @@ def calculator(request):
         weight = request.POST['weight']
         age = request.POST['age']
         bmi = round(float(weight) / (float(height) ** 2) * 10000, 2)
+        # perfect_weight = float((2.2 * float(bmi) + 3.5 * float(bmi)) * (float(height) * 1.5))
         if sex == 'Woman':
             bmr = int(655 + (9.6 * float(weight)) + (1.8 * float(height)) - 4.7 * int(age))
             tdee = int(float(activity) * bmr)
             tdee_lose_weight = int(tdee - tdee * 0.15)
             tdee_gain_weight = int(tdee + tdee * 0.15)
+            perfect_weight = (float(height) - 100) - ((float(height) - 100) * 0.15)
+
         elif sex == 'Man':
             bmr = int(66 + (13.7 * float(weight)) + (5 * float(height)) - 6.8 * int(age))
             tdee = int(float(activity) * bmr)
             tdee_lose_weight = int(tdee - tdee * 0.15)
             tdee_gain_weight = int(tdee + tdee * 0.15)
+            perfect_weight = (float(height) - 100) - ((float(height) - 100) * 0.1)
+
         return render(request, 'res_for_calculator.html', {'activity': activity,
                                                            'tdee': tdee,
                                                            'tdee_plus': tdee + 100,
@@ -99,7 +105,8 @@ def calculator(request):
                                                            'tdee_lose_weight_plus': tdee_lose_weight + 100,
                                                            'tdee_gain_weight': tdee_gain_weight,
                                                            'tdee_gain_weight_plus': tdee_gain_weight + 100,
-                                                           'bmi': bmi
+                                                           'bmi': bmi,
+                                                           'perfect_weight': perfect_weight
                                                            })
     return render(request, 'calculator.html')
 

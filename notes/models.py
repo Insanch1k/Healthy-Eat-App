@@ -5,6 +5,7 @@ from django.conf import settings
 
 '''Table for description Notes'''
 
+
 class Notes(models.Model):
     title = models.CharField(max_length=200, db_index=True)
     body = models.TextField()
