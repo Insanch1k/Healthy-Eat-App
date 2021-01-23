@@ -246,7 +246,7 @@
     <div id="container" class="container">
         <div class="container text-center" id="description">
 
-            <form method="POST">
+            <form method="POST" onsubmit='return confirm("Are you sure?")'>
                 {% csrf_token %}
                  <h4>{{ my_diet.date_subscribe }}</h4>
                 <input class="btn btn-success" type="submit" value="Unsubscribe">
@@ -256,10 +256,5 @@
     </div>
 
     {% block scripts %}
-
-        <script>
-            console.log("working")
-
-        </script>
     {% endblock %}
 {% endblock %}
