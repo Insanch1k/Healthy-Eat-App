@@ -84,21 +84,25 @@ def calculate_recipes_for_dinner_for_lose_program(amount_of_carbs, amount_of_fat
     return dinner_recipes
 
 
+# funkcja która liczy liczbę kalorii na śniadanie, jako argument przyjmuje wartość TDEE
 def calculate_breakfast_calories(value):
     breakfast_calories = round(value * 0.25, 1)
     return breakfast_calories
 
 
+# funkcja która liczy liczbę kalorii na obiad, jako argument przyjmuje wartość TDEE
 def calculate_lunch_calories(value):
     lunch_calories = round(value * 0.45, 1)
     return lunch_calories
 
 
+# funkcja która liczy liczbę kalorii na kolację, jako argument przyjmuje wartość TDEE
 def calculate_dinner_calories(value):
     dinner_calories = round(value * 0.2, 1)
     return dinner_calories
 
 
+# funkcja która liczy liczbę kalorii przekąsek, jako argument przyjmuje wartość TDEE
 def calculate_snack_calories(value):
     snack_calories = round(value * 0.05, 1)
     return snack_calories
