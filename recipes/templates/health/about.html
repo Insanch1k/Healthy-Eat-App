@@ -1,0 +1,213 @@
+{% extends 'health/base_generic.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+    <style>
+        .title {
+            margin-top: 40px;
+            font-size: 35px;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px black;
+            font-weight: bold;
+        }
+
+        .use-title {
+            font-weight: bold;
+            font-size: 25px;
+            color: white;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.25);
+        }
+
+        .app-title {
+            font-weight: bold;
+            font-size: 25px;
+            color: white;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.25);
+        }
+
+        .app {
+            margin-top: 30px;
+        }
+
+        .use {
+            margin-top: 30px;
+        }
+
+        .slider {
+            background-image: url("https://cdn.hipwallpaper.com/i/0/68/OG1FLx.jpg");
+            height: 300px;
+            padding: 10px;
+            color: white;
+            font-weight: 900;
+            border-radius: 10px;
+        }
+
+        .new-user {
+            text-align: center;
+        }
+
+
+        .advantages-title, .definitions {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 35px;
+            color: white;
+            text-shadow: 2px 2px black;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 25px;
+            color: white;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.25);
+
+        }
+
+        #social li a {
+            font-size: 26px;
+            font-weight: bold;
+            color: white;
+        }
+
+        #social li a:hover {
+            font-size: 26px;
+            font-weight: bold;
+            color: lightgray;
+        }
+
+        #social:hover,#sites:hover, #app:hover, #internet:hover{
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+
+    </style>
+
+    <div class="container">
+        {% if new_user %}
+            <div class="new-user">
+                Hello, {{ new_user.username }}!<br>
+                On this page you can read the information about how and what it is.<br>
+                Have fun!
+            </div>
+        {% endif %}
+        <div class="title">About</div>
+        <div class="slider">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-5">
+                    <h3>Cooking Smarter. Together.</h3>
+                    All recipes is the original and largest food-focused social network created for cooks by cooks;
+                    where
+                    everyone plays a part in helping cooks discover and share the joy of home cooking.
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+        <div class="app">
+
+            <div class="app-title">Our Story</div>
+
+            Our Story
+
+            It started with a cookie (not the Internet kind…) two decades ago when our founder Tim Hunt, a UW
+            anthropology graduate student craving his mom’s homemade cookies got to thinking this new thing called the
+            Internet would be a really cool place for cooks, to exchange favorite recipes.<br><br>
+
+            Tim created cookierecipe.com as an experiment to see if others would respond to his idea. As it turns out,
+            cooks had a huge appetite for sharing recipes; the site was an instant success. Over the next 20 years, Tim
+            and his crew rolled out more sites and social features allowing cooks of all types and interests to connect
+            through recipes, reviews, ratings, photos, profiles, blog posts, personal collections, and more.<br><br>
+
+            What started with a single cookie recipe has grown organically to become the world’s largest food-focused
+            social network with a community of 85 million home cooks consuming 3 billion pages annually of food
+            inspiration across our 19 sites serving 24 countries in 12 languages. I invite you to join our one-of-a-kind
+            community that inspires home cooking and celebrates the foods we make with friends, family, brands
+            and<br><br>
+            followers. Calling all cooks!
+        </div>
+        <div class="use">
+            <div class="use-title">How to use</div>
+
+            Our Story
+
+            It started with a cookie (not the Internet kind…) two decades ago when our founder Tim Hunt, a UW
+            anthropology graduate student craving his mom’s homemade cookies got to thinking this new thing called the
+            Internet would be a really cool place for cooks, to exchange favorite recipes.<br><br>
+
+            Tim created cookie recipe.com as an experiment to see if others would respond to his idea. As it turns out,
+            cooks had a huge appetite for sharing recipes; the site was an instant success. Over the next 20 years, Tim
+            and his crew rolled out more sites and social features allowing cooks of all types and interests to connect
+            through recipes, reviews, ratings, photos, profiles, blog posts, personal collections, and more.<br><br>
+
+            What started with a single cookie recipe has grown organically to become the world’s largest food-focused
+            social network with a community of 85 million home cooks consuming 3 billion pages annually of food
+            inspiration across our 19 sites serving 24 countries in 12 languages. I invite you to join our one-of-a-kind
+            community that inspires home cooking and celebrates the foods we make with friends, family, brands and
+            followers. Calling all cooks!<br>
+        </div>
+        <div class="advantages">
+            <div class="advantages-title">Here are some cool things we do</div>
+            <div class="row mt-3">
+                <div id="sites" class="col-sm-3">
+                    <h2 class="text-center">Sites</h2>
+                    <p>The world’s an amazingly delicious place. We offer 19 sites serving 24 countries in 12 languages
+                        where cooks from many cultures find, share and celebrate their signature dishes.</p>
+                </div>
+                <div id="app" class="col-sm-3">
+                    <h2 class="text-center">App</h2>
+                    <p>Smartphones and tablets are pretty awesome with all of the cool stuff they do. We created
+                        Allrecipes apps to take advantage of this awesomeness. Join the 24 million cooks who have
+                        already downloaded our free apps to their iOS, Android, Windows and Kindle devices.</p>
+                </div>
+                <div id="internet" class="col-sm-3">
+                    <h2 class="text-center">
+                        Internet of Things</h2>
+                    <p>Looking for dinnertime inspiration or want to use up those last eggs in your fridge? Just ask the
+                        Allrecipes Alexa Skill. Amazon’s digital assistant now has the kitchen smarts to access 60,000
+                        recipes from our community of home cooks. We’re also cooking on Samsung’s revolutionary Family
+                        Hub fridge with a door panel touchscreen serving up grocery lists and recipes. How cool is
+                        that?</p>
+                </div>
+                <div id="social" class="col-sm-3">
+                    <h2 class="text-center">Social</h2>
+                    <p>We crave a good food post, hashtag, tweet and video. That’s why you’ll find #Allrecipes hanging
+                        out at lots of cool places. Come visit us at:</p>
+                    <div class="social">
+                        <ul>
+                            <li><a href="#"><i class="fab fa-youtube mr-1"></i>Youtube</a></li>
+                            <li><a href="#"><i class="fab fa-facebook-square mr-1"></i>Facebook</a></li>
+                            <li><a href="#"><i class="fab fa-twitter mr-1"></i>Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-instagram mr-1"></i>Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="definitions">
+                DEFINITIONS
+            </div>
+            <p><strong>Periodic eating - </strong>Intermittent fasting has recently become a health trend. It’s claimed
+                to cause weight loss, improve metabolic health, and perhaps even extend lifespan.</p>
+            <p><strong>TDEE - </strong>Total Daily Energy Expenditure (TDEE) is an estimation of how many calories you
+                burn each day including pical exercise.
+
+                TDEE is just BMR with estimations added in. It's the same formula except you add in a multiplier that's
+                dependent on how much "activity" you have in a given day.</p>
+            <p><strong>BMI - </strong>Basal Metabolic Rate (BMR) is how many calories you burn when your body is
+                resting.
+
+                In other words, it's the calories your body needs to keep you alive. This is the bare minimum. Imagine
+                you were in a coma — that's the base level we're talking about here.</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.template import Template, Context
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
-from barbershop.celery import app
+from health.celery import app
 from diets.models import Diet
 from twilio.rest import Client
 from django.contrib.auth.models import User

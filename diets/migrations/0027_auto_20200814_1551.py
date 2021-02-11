@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hairstyle', '0010_auto_20200810_1008'),
+        ('recipes', '0010_auto_20200810_1008'),
         ('diets', '0026_auto_20200814_1527'),
     ]
 
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='diet',
             name='dinner',
-            field=models.ManyToManyField(blank=True, to='hairstyle.Recipe'),
+            field=models.ManyToManyField(blank=True, to='recipes.Recipe'),
         ),
         migrations.RemoveField(
             model_name='diet',
@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='diet',
             name='lunch',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='lunch', to='hairstyle.Recipe'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='lunch', to='recipes.Recipe'),
         ),
     ]

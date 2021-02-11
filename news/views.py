@@ -11,7 +11,7 @@ class MainView(ListView):
     
     '''Functipn for showing list of posts'''
     
-    template_name = 'barbershop/home.html'
+    template_name = 'health/home.html'
     paginate_by = 3
     model = Post
 

@@ -172,7 +172,7 @@ def gain_weight_program(request, value):
             new_program.lunch.add(lunch.id)
         # send sms with short info about program
         # send_confirm(new_program)
-        return redirect('hairstyle:my_profile')
+        return redirect('recipes:my_profile')
     context = {
         'breakfast_recipes': breakfast_recipes,
         'lunch_recipes': lunch_recipes,
@@ -250,7 +250,7 @@ def stable_weight_program(request, value):
         # send_confirm(new_program)
         # create new record in database with recipes for every user
 
-        return redirect('hairstyle:my_profile')
+        return redirect('recipes:my_profile')
     context = {
         'value': value,
         'is_subscribe': is_subscribe,
@@ -329,7 +329,7 @@ def lose_weight(request, value):
             new_program.lunch.add(lunch.id)
         # send_confirm(new_program)
         # create new record in database with recipes for every user
-        return redirect('hairstyle:my_profile')
+        return redirect('recipes:my_profile')
 
     context = {
         'value': value,
@@ -366,7 +366,7 @@ def my_program(request):
 
     if request.method == 'POST':
         my_diet.delete()
-        return redirect('hairstyle:my_profile')
+        return redirect('recipes:my_profile')
 
     context = {
         'my_diet': my_diet,
@@ -384,7 +384,7 @@ def settings_for_myprogram(request):
     program = Diet.objects.get(subscriber=request.user)
     if request.method == 'POST':
         program.delete()  # delete diet for user
-        return redirect('hairstyle:my_profile')
+        return redirect('recipes:my_profile')
 
     context = {
         'program': program,

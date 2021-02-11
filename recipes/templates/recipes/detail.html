@@ -1,0 +1,189 @@
+{% extends "health/base_generic.html" %}
+
+{% block title %}Detail{% endblock %}
+
+{% block content %}
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <style>
+        .img-thumbnail {
+            width: 400px !important;
+            height: 300px !important;
+        }
+
+        #container_detail {
+            background-color: white;
+            margin-top: 100px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .title {
+            color: gray;
+            font-size: 27px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .description {
+            font-style: italic;
+            color: gray;
+        }
+
+        .nutrition_facts {
+            display: block;
+            background-color: white;
+            border-radius: 5px;
+            border: 2px solid lightgray;
+            padding: 10px;
+
+        }
+
+        .nutrition_facts_wrap {
+            font-style: italic;
+            font-size: 20px;
+            font-weight: 500;
+
+        }
+
+        .step_by_step {
+            margin-top: 30px;
+            font-style: italic;
+
+        }
+
+        .favorite-section {
+            margin-top: 40px;
+            text-align: center;
+
+        }
+
+        .remove_title {
+            color: gray;
+            font-size: 27px;
+            font-weight: 900;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .add_title {
+            color: gray;
+            font-size: 27px;
+            font-weight: 900;
+            text-align: center;
+            font-style: italic;
+        }
+
+
+        .step {
+            margin-top: 20px;
+
+        }
+
+        .step h3 {
+            font-weight: bold;
+
+        }
+
+        .description_title {
+            color: gray;
+            font-size: 27px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .step-title {
+            color: gray;
+            font-style: italic;
+            font-size: 27px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .ingredients_title {
+            color: gray;
+            font-size: 27px;
+            font-weight: 900;
+
+            text-align: center;
+            font-style: italic;
+        }
+
+        .ingredients {
+            font-style: italic;
+            color: gray;
+        }
+
+
+    </style>
+
+    <div id="container_detail" class="container">
+
+        <div class="title">{{ recipe.title }}</div>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <img class="img-thumbnail" src="{{ recipe.image.url }}">
+            </div>
+            <div class="col-sm-4">
+                <div class="nutrition_facts">
+                    <div class="nutrition_facts_wrap"><strong>Protein: </strong>{{ recipe.protein }}</div>
+                    <div class="nutrition_facts_wrap"><strong>Carbohydrates: </strong>{{ recipe.carbohydrates }}</div>
+                    <div class="nutrition_facts_wrap"><strong>Fat: </strong>{{ recipe.fat }}</div>
+                    <hr>
+                    <div class="nutrition_facts_wrap"><strong>Total calories: </strong>{{ recipe.calories }}</div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <hr>
+        <div class="description">
+            <div class="description_title">DESCRIPTION</div>
+            {{ recipe.description }}</div>
+        <hr>
+        <div class="ingredients">
+            <div class="ingredients_title">INGREDIENTS</div>
+            {{ recipe.ingredients|linebreaks }}
+        </div>
+        <hr>
+        <div class="step_by_step">
+            <div class="step-title">DIRECTIONS</div>
+            <div class="step">
+                <h3><i class="fas fa-check-circle mr-2"></i>Step 1:</h3>
+                {{ recipe.step1 }}</div>
+            <div class="step"><h3><i
+                    class="fas fa-check-circle mr-2"></i>Step 2:</h3>{{ recipe.step2 }}</div>
+            <div class="step"><h3><i
+                    class="fas fa-check-circle mr-2"></i>Step 3:</h3>{{ recipe.step3 }}</div>
+            <div class="step"><h3><i
+                    class="fas fa-check-circle mr-2"></i>Step 4:</h3>{{ recipe.step4 }}</div>
+        </div>
+        <hr>
+
+        {% if user.is_authenticated %}
+            <div class="favorite-section">
+                {% if is_favorite %}
+                    <div class="remove_title">Remove from favorite</div>
+                    <a style="border-radius: 35px;text-shadow: none" class="btn btn-danger"
+                       href="{% url 'recipes:favorite' id=recipe.id slug=recipe.slug %}">REMOVE</a>
+
+                {% else %}
+                    <div class="add_title">Add to favorite</div>
+                    <a style="border-radius: 30px; text-shadow: none" class="btn btn-success"
+                       href="{% url 'recipes:favorite' id=recipe.id slug=recipe.slug %}">ADD</a>
+                {% endif %}
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+    {% block scripts %}
+        <script>
+
+        </script>
+    {% endblock %}
+{% endblock %}

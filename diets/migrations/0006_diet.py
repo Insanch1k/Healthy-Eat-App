@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('hairstyle', '0008_auto_20200619_1732'),
+        ('recipes', '0008_auto_20200619_1732'),
         ('diets', '0005_auto_20200629_1545'),
     ]
 
@@ -23,9 +23,9 @@ class Migration(migrations.Migration):
                 ('breakfast_time', models.TimeField(blank=True)),
                 ('lunch_time', models.TimeField(blank=True)),
                 ('dinner_time', models.TimeField(blank=True)),
-                ('breakfast', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='breakfast', to='hairstyle.Recipe')),
-                ('dinner', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='dinner', to='hairstyle.Recipe')),
-                ('lunch', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='lunch', to='hairstyle.Recipe')),
+                ('breakfast', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='breakfast', to='recipes.Recipe')),
+                ('dinner', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='dinner', to='recipes.Recipe')),
+                ('lunch', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='lunch', to='recipes.Recipe')),
                 ('user', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='user_diet', to=settings.AUTH_USER_MODEL)),
             ],
         ),

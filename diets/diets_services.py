@@ -1,5 +1,5 @@
 from .models import Diet, Weight
-from hairstyle.models import Recipe
+from recipes.models import Recipe
 from django.core.mail import send_mail
 from twilio.rest import Client
 import datetime

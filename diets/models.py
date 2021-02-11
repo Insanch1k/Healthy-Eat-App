@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from hairstyle.models import Recipe
+from recipes.models import Recipe
 import datetime
 from twilio.rest import Client
 

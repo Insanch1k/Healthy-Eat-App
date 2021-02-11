@@ -1,4 +1,4 @@
-{% extends 'barbershop/base_generic.html' %}
+{% extends 'health/base_generic.html' %}
 
 {% block title %}My program{% endblock %}
 
@@ -195,7 +195,7 @@
                         <tr>
                             <td><img src="{{ b.image.url }}" alt="{{ b.title }}" class="img-thumbnail"></td>
                             <td>{{ b.calories }}ccal</td>
-                            <td><a href="{% url 'hairstyle:recipe_detail' b.id b.slug %}">Choose</a></td>
+                            <td><a href="{% url 'recipes:recipe_detail' b.id b.slug %}">Choose</a></td>
                         </tr>
                     {% endfor %}
                 </table>
@@ -207,7 +207,7 @@
                         <tr>
                             <td><img class="img-thumbnail" alt="{{ b.title }}" src="{{ l.image.url }}"></td>
                             <td>{{ l.calories }}ccal</td>
-                            <td><a href="{% url 'hairstyle:recipe_detail' l.id l.slug %}">Choose</a></td>
+                            <td><a href="{% url 'recipes:recipe_detail' l.id l.slug %}">Choose</a></td>
                         </tr>
                     {% endfor %}
                 </table>
@@ -219,7 +219,7 @@
                         <tr>
                             <td><img class="img-thumbnail" src="{{ d.image.url }}"></td>
                             <td>{{ d.calories }}ccal</td>
-                            <td><a href="{% url 'hairstyle:recipe_detail' d.id d.slug %}">Choose</a></td>
+                            <td><a href="{% url 'recipes:recipe_detail' d.id d.slug %}">Choose</a></td>
                         </tr>
                     {% endfor %}
                 </table>

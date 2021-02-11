@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hairstyle', '0008_auto_20200619_1732'),
+        ('recipes', '0008_auto_20200619_1732'),
         ('diets', '0007_auto_20200807_2034'),
     ]
 
@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='diet',
             name='breakfast',
-            field=models.ManyToManyField(blank=True, related_name='breakfast', to='hairstyle.Recipe'),
+            field=models.ManyToManyField(blank=True, related_name='breakfast', to='recipes.Recipe'),
         ),
     ]

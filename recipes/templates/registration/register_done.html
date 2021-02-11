@@ -1,0 +1,27 @@
+{% extends "health/base_generic.html" %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+    <style>
+        .reg_done {
+            text-align: center;
+            background: #3354AA;
+            margin: auto;
+            width: 300px;
+            height: 500px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            padding: 20px;
+        }
+
+    </style>
+    <div class="reg_done mt-5">
+        <h1>Welcome {{ new_user.first_name }}</h1>
+        <h2>You already read what is it NameOOSite, now you can start use this app</h2>
+        <a href="{% url 'news:main' %}"><img src="/media/images/joint.png" width="40"></a>
+    </div>
+{% endblock %}
