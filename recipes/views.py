@@ -56,20 +56,21 @@ def my_profile(request):
         user = request.user
         favorite_recipe = user.favorite.all()
         my_programs = Diet.objects.filter(subscriber=request.user)
-        sweet = favorite_recipe.filter(category__name='Sweet')
         dinner = favorite_recipe.filter(category__name='Dinner')
         breakfast = favorite_recipe.filter(category__name='Breakfast')
-        vegan = favorite_recipe.filter(category__name='Vegan')
+        lunch = favorite_recipe.filter(category__name='Lunch')
+        snack = favorite_recipe.filter(category__name='Snack')
+
         number = request.user.profile.phone
 
         return render(request, 'profile/my_profile.html', {'favorite_recipe': favorite_recipe,
-                                                           'Sweet': sweet,
                                                            'dinner': dinner,
                                                            'breakfast': breakfast,
-                                                           'vegan': vegan,
                                                            'my_programs': my_programs,
                                                            'number': number,
-                                                           'program': program
+                                                           'program': program,
+                                                           'lunch': lunch,
+                                                           'snack': snack
                                                            })
 
 
