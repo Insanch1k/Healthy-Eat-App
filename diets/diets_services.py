@@ -41,14 +41,14 @@ def calculate_recipes_for_breakfast_for_gain_weight_program(amount_of_carbs, amo
 def calculate_recipes_for_dinner_for_stable_weight_program(amount_of_carbs, amount_of_fat, amount_of_protein,
                                                            dinner_calories):
     dinner_recipes = Recipe.objects.filter(category__name='Dinner',
-                                           calories__range=(dinner_calories - 100, dinner_calories + 50))
+                                           calories__range=(dinner_calories - 50, dinner_calories + 100))
     return dinner_recipes
 
 
 def calculate_recipes_for_breakfast_for_stable_weight_program(amount_of_carbs, amount_of_fat, amount_of_protein,
                                                               breakfast_calories):
-    breakfast_recipes = Recipe.objects.filter(category__name='Breakfast', calories__range=(
-        breakfast_calories - 100, breakfast_calories + 50))
+    breakfast_recipes = Recipe.objects.filter(category__name='Breakfast',
+                                              calories__range=(breakfast_calories - 100, breakfast_calories + 50))
     return breakfast_recipes
 
 
@@ -61,7 +61,6 @@ def calculate_recipes_for_lunch_for_stable_weight_program(amount_of_carbs, amoun
 
 '''Functions below for calculate amount of calories for each eating'''
 
-
 def calculate_recipes_for_breakfast_for_lose_weight_program(amount_of_carbs, amount_of_fat, amount_of_protein,
                                                             breakfast_calories):
     breakfast_recipes = Recipe.objects.filter(category__name='Breakfast',
@@ -72,7 +71,7 @@ def calculate_recipes_for_breakfast_for_lose_weight_program(amount_of_carbs, amo
 
 def calculate_recipes_for_lunch_for_lose_program(amount_of_carbs, amount_of_fat, amount_of_protein,
                                                  lunch_calories):
-    lunch_recipes = Recipe.objects.filter(category_name='Lunch',
+    lunch_recipes = Recipe.objects.filter(category__name='Lunch',
                                           calories__range=(lunch_calories - 100, lunch_calories + 50))
     return lunch_recipes
 

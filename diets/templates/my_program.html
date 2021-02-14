@@ -9,6 +9,10 @@
             padding: 20px;
         }
 
+        table tr {
+            text-align: right;
+        }
+
         body {
             background-image: url("https://st4.depositphotos.com/1001092/22514/i/1600/depositphotos_225149288-stock-photo-asian-food-background.jpg");
             -webkit-background-size: cover;
@@ -108,25 +112,17 @@
 
     </style>
     <div class="container">
-    <h1 class="text-center"><strong>Description</strong></h1>
     </div>
     <div class="container mt-5">
         <div class="desc">
             <div class="breakfast">
+                 <h3>Example of a meal schedule:</h3>
                 <div class="breakfast-title">Breakfast</div>
-                <h3>Example universal recipe:</h3>
+                <h4>{{ my_diet.breakfast_time }}</h4>
                 <table class="table table-hover">
                     <tr>
-                        <td>- Something</td>
+                        <td>Green club sandwich</td>
                         <td>100g</td>
-                    </tr>
-                    <tr>
-                        <td>- Something</td>
-                        <td>2 times</td>
-                    </tr>
-                    <tr>
-                        <td>- Something</td>
-                        <td>30g</td>
                     </tr>
                 </table>
 
@@ -135,26 +131,18 @@
                 <div class="lunch-title">Snack</div>
                 <table class="table table-hover">
                     <tr>
-                        <td>Orange</td>
-                        <td>1 time</td>
+                        <td>Healthy Banana Bread</td>
+                        <td>100g</td>
                     </tr>
                 </table>
             </div>
             <div class="lunch">
                 <div class="lunch-title">Lunch</div>
-                <h4>{{ my_diet.breakfast_time }}</h4>
+                <h4>{{ my_diet.lunch_time }}</h4>
                 <table class="table table-hover">
                     <tr>
-                        <td>- Something</td>
+                        <td>Pork Milanese with spaghetti</td>
                         <td>100g</td>
-                    </tr>
-                    <tr>
-                        <td>- Something</td>
-                        <td>2 times</td>
-                    </tr>
-                    <tr>
-                        <td>- Something</td>
-                        <td>30g</td>
                     </tr>
                 </table>
             </div>
@@ -162,25 +150,18 @@
                 <div class="lunch-title">Snack</div>
                 <table class="table table-hover">
                     <tr>
-                        <td>Orange</td>
-                        <td>1 time</td>
+                        <td>Almost-Raw Carrot Cake Bliss Balls</td>
+                        <td>100g</td>
                     </tr>
                 </table>
             </div>
             <div class="dinner">
                 <div class="dinner-title">Dinner</div>
+                <h4>{{ my_diet.dinner_time }}</h4>
                 <table class="table table-hover">
                     <tr>
-                        <td>- Something</td>
+                        <td>Pork with sweet & sour onion sauce</td>
                         <td>100g</td>
-                    </tr>
-                    <tr>
-                        <td>- Something</td>
-                        <td>2 times</td>
-                    </tr>
-                    <tr>
-                        <td>- Something</td>
-                        <td>30g</td>
                     </tr>
                 </table>
             </div>
@@ -225,19 +206,16 @@
                 </table>
             </div>
         </div>
-        <div class="snacks">
+        <div class="snacks" style="color: white">
             <div class="snack-title">Snacks</div>
             <table class="table table-hover mt-3">
-                <tr>
-                    <td>peanuts</td>
-                    <td>100g</td>
-                    <td>Choose</td>
-                </tr>
-                <tr>
-                    <td>peanuts</td>
-                    <td>100g</td>
-                    <td>Choose</td>
-                </tr>
+                {% for snack in snacks  %}
+                    <tr>
+                        <td>{{ snack.title }}</td>
+                        <td>{{ snack.calories }}ccal</td>
+                        <td><a href="{% url 'recipes:recipe_detail' snack.id snack.slug %}">Choose</a></td>
+                    </tr>
+                {% endfor %}
             </table>
         </div>
     </div>
@@ -248,7 +226,6 @@
 
             <form method="POST" onsubmit='return confirm("Are you sure?")'>
                 {% csrf_token %}
-                 <h4>{{ my_diet.date_subscribe }}</h4>
                 <input class="btn btn-success" type="submit" value="Unsubscribe">
             </form>
 

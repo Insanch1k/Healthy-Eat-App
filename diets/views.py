@@ -140,7 +140,7 @@ def gain_weight_program(request, value):
                                                                                 breakfast_calories)
     lunch_recipes = calculate_recipes_for_lunch_for_gain_weight_program(amount_of_carbs, amount_of_fat,
                                                                         amount_of_protein,
-                                                                        lunch_calories)
+                                                                        lunch_calories2)
     dinner_recipes = calculate_recipes_for_dinner_for_gain_weight_program(amount_of_carbs, amount_of_fat,
                                                                           amount_of_protein,
                                                                           dinner_calories)
@@ -210,15 +210,18 @@ def stable_weight_program(request, value):
     amount_of_fat = (value * 0.2) / 9
     amount_of_protein = (value * 0.25) / 4
 
-    if lunch_calories > 900:
+    if lunch_calories > 1000:
         lunch_calories2 /= 2
+
+    print(lunch_calories)
+    print(dinner_calories)
 
     breakfast_recipes = calculate_recipes_for_breakfast_for_stable_weight_program(amount_of_carbs, amount_of_fat,
                                                                                   amount_of_protein,
                                                                                   breakfast_calories)
     lunch_recipes = calculate_recipes_for_lunch_for_stable_weight_program(amount_of_carbs, amount_of_fat,
                                                                           amount_of_protein,
-                                                                          lunch_calories)
+                                                                          lunch_calories2)
     dinner_recipes = calculate_recipes_for_dinner_for_stable_weight_program(amount_of_carbs, amount_of_fat,
                                                                             amount_of_protein,
                                                                             dinner_calories)
@@ -277,19 +280,22 @@ def stable_weight_program(request, value):
 
 
 def lose_weight(request, value):
+    divided_lunch_calories = None
     value -= (value * 0.15)
     amount_of_carbs = (value * 0.45) / 4
     amount_of_fat = (value * 0.2) / 9
     amount_of_protein = (value * 0.35) / 4
     breakfast_calories = calculate_dinner_calories(value)
     lunch_calories = calculate_lunch_calories(value)
+    print(lunch_calories)
     lunch_calories2 = calculate_lunch_calories(value)
     dinner_calories = calculate_dinner_calories(value)
     snack_calories = calculate_snack_calories(value)
+    print(dinner_calories)
     snack2_calories = calculate_snack_calories(value)
     breakfast_time = None
     if lunch_calories > 900:
-        divided_lunch_calories = lunch_calories / 2
+        lunch_calories2 = lunch_calories / 2
     # Add divided lunch calories to function for finding recipes by amount of calories
     breakfast_recipes = calculate_recipes_for_breakfast_for_lose_weight_program(
         amount_of_carbs,
@@ -299,7 +305,7 @@ def lose_weight(request, value):
     lunch_recipes = calculate_recipes_for_lunch_for_lose_program(amount_of_carbs,
                                                                  amount_of_fat,
                                                                  amount_of_protein,
-                                                                 lunch_calories)
+                                                                 lunch_calories2)
     dinner_recipes = calculate_recipes_for_dinner_for_lose_program(amount_of_carbs,
                                                                    amount_of_fat,
                                                                    amount_of_protein,
@@ -312,7 +318,6 @@ def lose_weight(request, value):
         breakfast_time = request.POST['breakfast_time']
         lunch_time = request.POST['lunch_time']
         dinner_time = request.POST['dinner_time']
-        print(dinner_time)
         new_program = Diet.objects.create(title='LoseWeight',
                                           slug='loseweightfor' + request.user.username,
                                           subscriber=request.user,
@@ -363,6 +368,7 @@ def my_program(request):
     my_diet = Diet.objects.get(subscriber=request.user, is_active=True)
     times = [my_diet.breakfast_time, my_diet.lunch_time, my_diet.dinner_time]
     time_now = datetime.datetime.today().time()
+    snacks = Recipe.objects.filter(category__name='Snack')
 
     if request.method == 'POST':
         my_diet.delete()
@@ -372,7 +378,7 @@ def my_program(request):
         'my_diet': my_diet,
         'time': time_now,
         'time1': times[0],
-
+        'snacks': snacks
     }
 
     return render(request, 'my_program.html', context)

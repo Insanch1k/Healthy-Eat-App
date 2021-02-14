@@ -201,8 +201,8 @@
 
             </div>
             <h2>RECOMMENDED DAILY CALORIES: </h2>
-            <p>Lose: {{ tdee_lose_weight }} - {{ tdee_lose_weight_plus }} calories</p>
-            <p>GAIN: {{ tdee_gain_weight }} - {{ tdee_gain_weight_plus }} calories</p>
+            <p>Lose weight: {{ tdee_lose_weight }} - {{ tdee_lose_weight_plus }} calories</p>
+            <p>Gain weight: {{ tdee_gain_weight }} - {{ tdee_gain_weight_plus }} calories</p>
         </div>
         <div class="water">
             <div class="title">Water
@@ -256,45 +256,45 @@
 
         </div>
         {% if user.is_authenticated %}
-        <div class="container col-sm-8">
+            <div class="container col-sm-8">
 
-            <div data-aos="fade-up" class="card-deck text-center" style="margin-top: 100px">
+                <div data-aos="fade-up" class="card-deck text-center" style="margin-top: 100px">
 
-                <div style="background-color: lightgray" class="card">
-                    <img class="card-img-top" style="height: 250px"
-                         src="https://www.innovativehomecare.com/wp-content/uploads/2019/10/How-to-Lose-Weight-in-30-days-1-1024x681.jpg">
-                    <div class="card-body">
-                        <h4 class="card-title">Lose weight</h4>
-                        <p class="card-text">Try program for lose weight</p>
-                        <a href="{% url 'diets:lose_weight' tdee %}"
-                           class="btn btn-success">Try it</a>
+                    <div style="background-color: lightgray" class="card">
+                        <img class="card-img-top" style="height: 250px"
+                             src="https://www.innovativehomecare.com/wp-content/uploads/2019/10/How-to-Lose-Weight-in-30-days-1-1024x681.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">Lose weight</h4>
+                            <p class="card-text">Try program for lose weight</p>
+                            <a href="{% url 'diets:lose_weight' tdee %}"
+                               class="btn btn-success">Try it</a>
+                        </div>
                     </div>
-                </div>
 
 
-                <div style="background-color: lightgray" class="card">
-                    <img class="card-img-top" style="height: 250px"
-                         src="https://www.healthline.com/hlcmsresource/images/AN_images/AN546-Woman-Meditating-732x549-thumb.jpg">
-                    <div class="card-body">
-                        <h4 class="card-title">Stable weight</h4>
-                        <p class="card-text">Try program for stable weight</p>
-                        <a href="{% url 'diets:stable_weight' tdee %}"
-                           class="btn btn-success">Try it</a>
+                    <div style="background-color: lightgray" class="card">
+                        <img class="card-img-top" style="height: 250px"
+                             src="https://www.healthline.com/hlcmsresource/images/AN_images/AN546-Woman-Meditating-732x549-thumb.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title">Stable weight</h4>
+                            <p class="card-text">Try program for stable weight</p>
+                            <a href="{% url 'diets:stable_weight' tdee %}"
+                               class="btn btn-success">Try it</a>
+                        </div>
                     </div>
-                </div>
 
 
-                <div style="background-color: lightgray" class="card">
-                    <img class="card-img-top" style="height: 250px"
-                         src="https://qph.fs.quoracdn.net/main-qimg-332c8bdfbae05b87aa7fbe663ec9d28d.webp">
-                    <div class="card-body">
-                        <h4 class="card-title">Gain weight</h4>
-                        <p class="card-text">Try program for gain weight</p>
-                        <a href="{% url 'diets:gain_weight' tdee %}" class="btn btn-success">Try it</a>
+                    <div style="background-color: lightgray" class="card">
+                        <img class="card-img-top" style="height: 250px"
+                             src="https://qph.fs.quoracdn.net/main-qimg-332c8bdfbae05b87aa7fbe663ec9d28d.webp">
+                        <div class="card-body">
+                            <h4 class="card-title">Gain weight</h4>
+                            <p class="card-text">Try program for gain weight</p>
+                            <a href="{% url 'diets:gain_weight' tdee %}" class="btn btn-success">Try it</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         {% endif %}
         <div class="col-sm-2">
 
@@ -302,43 +302,43 @@
     </div>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init();
-        // Get the modal
-        var modal = document.getElementById("myModal");
-        var modal1 = document.getElementById("myModal1");
-        var modal2 = document.getElementById("myModal2");
-        var modal3 = document.getElementById("myModal3");
+      AOS.init();
+      // Get the modal
+      var modal = document.getElementById("myModal");
+      var modal1 = document.getElementById("myModal1");
+      var modal2 = document.getElementById("myModal2");
+      var modal3 = document.getElementById("myModal3");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-        var btn1 = document.getElementById("myBtn1");
-        var btn2 = document.getElementById("myBtn2");
-        var btn3 = document.getElementById("myBtn3");
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+      var btn1 = document.getElementById("myBtn1");
+      var btn2 = document.getElementById("myBtn2");
+      var btn3 = document.getElementById("myBtn3");
 
-        // When the user clicks on the button, open the modal
-        btn.onclick = function () {
-            modal.style.display = "block";
+      // When the user clicks on the button, open the modal
+      btn.onclick = function () {
+        modal.style.display = "block";
+      }
+      btn2.onclick = function () {
+        modal2.style.display = "block";
+      }
+      btn3.onclick = function () {
+        modal3.style.display = "block";
+      }
+      btn1.onclick = function () {
+        modal1.style.display = "block";
+      }
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        } else if (event.target == modal1) {
+          modal1.style.display = "none";
+        } else if (event.target == modal2) {
+          modal2.style.display = "none";
+        } else if (event.target == modal3) {
+          modal3.style.display = "none";
         }
-        btn2.onclick = function () {
-            modal2.style.display = "block";
-        }
-        btn3.onclick = function () {
-            modal3.style.display = "block";
-        }
-        btn1.onclick = function () {
-            modal1.style.display = "block";
-        }
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            } else if (event.target == modal1) {
-                modal1.style.display = "none";
-            } else if (event.target == modal2) {
-                modal2.style.display = "none";
-            } else if (event.target == modal3) {
-                modal3.style.display = "none";
-            }
-        }
+      }
     </script>
 {% endblock %}

@@ -112,7 +112,7 @@
         <div class="lunch">
             <div class="lunch-title">TIPS FOR LUNCH</div>
             <p>Recommended calories for lunch is <strong
-                    style="font-size: 22px">{{ lunch_calories2 }}</strong></p>
+                    style="font-size: 22px">{{ lunch_calories }}</strong></p>
             <hr>
             <p>Protein: {{ amount_of_protein_for_lunch }}</p>
             <p>Carbs: {{ amount_of_carbs_for_lunch }}</p>
@@ -121,8 +121,8 @@
             <p>After lunch you can grab some snack on approximately {{ snack2_calories }} calories</p>
             <hr>
             {% if lunch_calories > 900 %}
-                <p><strong>Recommendation: </strong>Good way is divide on two times:
-                    approximately {{ divided_lunch_calories }}</p>
+                <p><strong>Recommendation: </strong>Good way it is eat two lunch:
+                    approximately {{ lunch_calories2 }}</p>
             {% else %}
                 <p>You can eat one eating with this amount of calories {{ lunch_calories }}</p>
                 <p></p>

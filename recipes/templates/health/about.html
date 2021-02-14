@@ -87,6 +87,10 @@
             border-radius: 5px;
         }
 
+        .use a {
+            color: white;
+        }
+
 
     </style>
 
@@ -127,19 +131,20 @@
             and his crew rolled out more sites and social features allowing cooks of all types and interests to connect
             through recipes, reviews, ratings, photos, profiles, blog posts, personal collections, and more.<br><br>
 
-            What started with a single cookie recipe has grown organically to become the world’s largest food-focused
-            social network with a community of 85 million home cooks consuming 3 billion pages annually of food
-            inspiration across our 19 sites serving 24 countries in 12 languages. I invite you to join our one-of-a-kind
-            community that inspires home cooking and celebrates the foods we make with friends, family, brands
-            and<br><br>
-            followers. Calling all cooks!
         </div>
         <div class="use">
             <div class="use-title">How to use</div>
+            <p>
+                In the <a href="{% url 'news:main' %}">News</a> tab you will find interesting news and articles from the world of proper nutrition and healthy lifestyle.
+            </p>
 
-            In the News tab you will find interesting news and articles from the world of proper nutrition and healthy lifestyle.
+            <p>
+                In the <a href="{% url 'recipes:recipes_list' %}">Recipes</a> page you can find all recipes available in this app.
+            </p>
 
-            <br>
+            <p>
+                In the <a href="{% url 'diets:calculator' %}">Calculator</a> page you can calculate your daily calories range.
+            </p>
         </div>
         <div class="advantages">
             <div class="advantages-title">Here are some cool things we do</div>
