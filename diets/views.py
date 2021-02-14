@@ -13,28 +13,27 @@ from .diets_services import *
 @login_required()
 def show_progress(request):
     user = request.user
-    my_weight = get_my_weight(user)
-    # my_weight = Weight.objects.filter(user=user).order_by('created')
+    my_weight = get_my_weight(user) # pobieramy wage z bd dla zalogowanego użytkownika
     firstt = None
     lastt = None
     res = None
     new_res = None
-    dt = datetime.datetime.today()
+    dt = datetime.datetime.today() # dzisiejsza data
     fd = None
-    if my_weight:
+    if my_weight: # sprawdzamy czy uzytkownik posiada jakies wpisy
         firstt = my_weight.reverse()[0]
         lastt = my_weight[0]
-        res = float(firstt.weight) - float(lastt.weight)
+        res = float(firstt.weight) - float(lastt.weight) # liczymy postem
         new_res = round(res, 2)
         fd = dt.day
-        if request.method == 'POST':
-            weight_form = WeightForm(request.POST)
-            if firstt.created.day == dt.day:
-                messages.warning(request, 'Today you already added your weight')
+        if request.method == 'POST': # jesli użytkownik dodaje nowa wage
+            weight_form = WeightForm(request.POST) # wyswietlamy forme
+            if firstt.created.day == dt.day: # sprawdzamy czy uzytkownik wpisal dzisiejsza wage wczesniej
+                messages.warning(request, 'Today you already added your weight') # wyswietlamy blad
                 return redirect('diets:weight')
             else:
-                if weight_form.is_valid():
-                    new_weight = weight_form.save(commit=False)
+                if weight_form.is_valid(): #jesli to pierwszy wpis
+                    new_weight = weight_form.save(commit=False) # wpisujemy wage do bd
                     new_weight.user = request.user
                     new_weight.save()
         else:
@@ -62,11 +61,10 @@ def show_progress(request):
 
 
 def delete_weight(request, id):
-    user = request.user
-    item = get_weight_item(user, id)
-    # item = Weight.objects.get(user=user, id=id)
+    user = request.user # bierzemy imie uzytkownika
+    item = get_weight_item(user, id) # bierzemy z bd wage uzytkownika
     if request.method == 'POST':
-        item.delete()
+        item.delete() # usuwamy wage dla podanego uzytkownika
         return redirect('diets:weight')
     return render(request, 'weight/weight_delete.html', {'weight_for_delete': item})
 
