@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block content %}
-    <h1>SETTINGS FOR CURRENTLY PROGRAM {{ program.title }}</h1>
+    <h1>SETTINGS FOR CURRENTLY PROGRAM {{ program.meal_plan.title }}</h1>
     <div class="container">
-        <form method="POST">
+        <form method="POST" action="{% url 'diets:unsubscribe_program' %}">
             {% csrf_token %}
-            <input class = "btn btn-success" type="submit" value="Unsubscribe">
+            <input class="btn btn-success" type="submit" value="Unsubscribe">
         </form>
     </div>
 {% endblock %}

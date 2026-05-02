@@ -1,0 +1,132 @@
+x-django-env: &django-env
+  DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE:-health.settings.prod}
+  DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-}
+  DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1}
+  DATABASE_URL: ${DATABASE_URL:-postgres://healthy:healthy@postgres:5432/healthy}
+  CELERY_BROKER_URL: ${CELERY_BROKER_URL:-redis://redis:6379/0}
+  CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND:-django-db}
+  DJANGO_SECURE_SSL_REDIRECT: ${DJANGO_SECURE_SSL_REDIRECT:-True}
+  DJANGO_SESSION_COOKIE_SECURE: ${DJANGO_SESSION_COOKIE_SECURE:-True}
+  DJANGO_CSRF_COOKIE_SECURE: ${DJANGO_CSRF_COOKIE_SECURE:-True}
+  SMS_REMINDERS_ENABLED: ${SMS_REMINDERS_ENABLED:-False}
+  DJANGO_RUN_MIGRATIONS: ${DJANGO_RUN_MIGRATIONS:-0}
+  DJANGO_COLLECTSTATIC_ON_STARTUP: ${DJANGO_COLLECTSTATIC_ON_STARTUP:-0}
+
+services:
+  migrate:
+    build: .
+    command: python manage.py migrate --noinput
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      <<: *django-env
+      DJANGO_RUN_MIGRATIONS: "0"
+      DJANGO_COLLECTSTATIC_ON_STARTUP: "0"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  web:
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      <<: *django-env
+      DJANGO_RUN_MIGRATIONS: "0"
+      DJANGO_COLLECTSTATIC_ON_STARTUP: "1"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    volumes:
+      - media:/app/media
+      - staticfiles:/app/staticfiles
+    ports:
+      - "${WEB_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/healthz/"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  celery-worker:
+    build: .
+    command: celery -A health worker --loglevel=INFO
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      <<: *django-env
+      DJANGO_RUN_MIGRATIONS: "0"
+      DJANGO_COLLECTSTATIC_ON_STARTUP: "0"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    volumes:
+      - media:/app/media
+
+  celery-beat:
+    build: .
+    command: celery -A health beat --loglevel=INFO
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      <<: *django-env
+      DJANGO_RUN_MIGRATIONS: "0"
+      DJANGO_COLLECTSTATIC_ON_STARTUP: "0"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:stable-alpine
+    profiles: ["prod"]
+    depends_on:
+      web:
+        condition: service_healthy
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - staticfiles:/staticfiles:ro
+      - media:/media:ro
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: healthy
+      POSTGRES_USER: healthy
+      POSTGRES_PASSWORD: healthy
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U healthy -d healthy"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  redis:
+    image: redis:8-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  postgres_data:
+  redis_data:
+  media:
+  staticfiles:

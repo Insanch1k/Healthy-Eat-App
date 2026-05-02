@@ -3,92 +3,10 @@
 {% block title %}Gain Program{% endblock %}
 
 {% block content %}
-    <style>
-        body {
-            color: white;
-            background-image: url("https://s3.envato.com/files/213888016/FM4_171_V.jpg");
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-
-        .info {
-            opacity: 0.6;
-            background-color: #74593A;
-        }
-
-        .breakfast, .lunch, .dinner {
-            background: #686354;
-            width: 380px;
-            height: 450px;
-            padding: 10px;
-            margin: 20px 20px 20px 20px;
-            display: inline-block;
-            border-radius: 15px;
-            position: relative;
-            color: white;
-            opacity: 0.8;
-        }
-
-        .breakfast-title, .dinner-title, .lunch-title, .snack-title {
-            font-size: 30px;
-            color: white;
-            text-shadow: 2px 2px gray;
-        }
-
-
-        .info {
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-
-        .weight-lose {
-            padding: 65px 0;
-            text-align: center;
-            border-radius: 50%;
-            border-style: solid;
-            border-width: 5px;
-            border-color: #30BF61;
-            width: 200px;
-            height: 200px;
-            display: table;
-            margin: 0 auto;
-        }
-
-        .weight-lose-value {
-            font-size: 35px;
-        }
-
-        .subscribe {
-            padding: 15px;
-        }
-
-        #get-program {
-            background-image: linear-gradient(green, cadetblue);
-            border-radius: 35px;
-            margin-bottom: 20px;
-            padding: 10px;
-            width: 140px;
-        }
-
-        #get-program:hover {
-            background-image: linear-gradient(cadetblue, green);
-            border-radius: 35px;
-        }
-
-        #already_subscribed {
-            text-align: center;
-        }
-
-    </style>
-    <div class="container-fluid">
+    <div class="container-fluid program-tips-grid">
         <div class="breakfast">
             <div class="breakfast-title">TIPS FOR BREAKFAST</div>
-            <p>Recommended calories for breakfast is <strong
-                    style=" font-size: 22px; font-weight: bold">{{ breakfast_calories }}</strong></p>
+            <p>Recommended calories for breakfast is <strong>{{ breakfast_calories }}</strong></p>
             <hr>
             <p>Protein: {{ amount_of_protein_for_breakfast }}</p>
             <p>Carbs: {{ amount_of_carbs_for_breakfast }}</p>
@@ -100,8 +18,7 @@
         </div>
         <div class="lunch">
             <div class="lunch-title">TIPS FOR LUNCH</div>
-            <p>Recommended calories for lunch is <strong
-                    style="font-size: 22px">{{ lunch_calories }}</strong></p>
+            <p>Recommended calories for lunch is <strong>{{ lunch_calories }}</strong></p>
             <hr>
             <p>Protein: {{ amount_of_protein_for_lunch }}</p>
             <p>Carbs: {{ amount_of_carbs_for_lunch }}</p>
@@ -119,8 +36,7 @@
         </div>
         <div class="dinner">
             <div class="dinner-title">TIPS FOR DINNER</div>
-            <p>Recommended calories for dinner is <strong
-                    style="font-size: 22px">{{ dinner_calories }}</strong></p>
+            <p>Recommended calories for dinner is <strong>{{ dinner_calories }}</strong></p>
             <hr>
             <p>Protein: {{ amount_of_protein_for_dinner }}</p>
             <p>Carbs: {{ amount_of_carbs_for_dinner }}</p>
@@ -136,12 +52,18 @@
     <div class="container">
         {% for b in breakfast_recipes %}
             <p>{{ b.title }} -b</p>
+        {% empty %}
+            <p class="empty-inline">No breakfast recipes match this target.</p>
         {% endfor %}
         {% for l in lunch_recipes %}
             <p>{{ l.title }} -l</p>
+        {% empty %}
+            <p class="empty-inline">No lunch recipes match this target.</p>
         {% endfor %}
         {% for d in dinner_recipes %}
             <p>{{ d.title }} -d</p>
+        {% empty %}
+            <p class="empty-inline">No dinner recipes match this target.</p>
         {% endfor %}
     </div>
     <div class="container">
@@ -150,10 +72,10 @@
                 to achieve the desired result
             </div>
             <div class="subscribe">
-                <p style="font-size: 30px"><i class="far fa-check-circle"></i> A clear plan to achieve the goal</p>
-                <p style="font-size: 30px"><i class="far fa-check-circle"></i> Simple recipes: ingredients are easy to
+                <p><i class="far fa-check-circle"></i> A clear plan to achieve the goal</p>
+                <p><i class="far fa-check-circle"></i> Simple recipes: ingredients are easy to
                     find and prepare</p>
-                <p style="font-size: 30px"><i class="far fa-check-circle"></i> The menu is designed based on your
+                <p><i class="far fa-check-circle"></i> The menu is designed based on your
                     personal characteristics</p>
             </div>
 
@@ -176,7 +98,7 @@
                             <input name="dinner_time" type="time" class="form-control" id="dinner">
                         </div>
                         {% if is_subscribe %}
-                            <p id="already_subscribed"><i class="fas fa-check mr-2"></i>You have been subscribed</p>
+                            <p id="already_subscribed"><i class="fas fa-check me-2"></i>You have been subscribed</p>
                         {% else %}
 
                             <div class="text-center"><input id="get-program" class="btn btn-success" type="submit"

@@ -1,0 +1,528 @@
+body {
+    background: #30bf61;
+    color: #1f2a24;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.site-hero {
+    min-height: 220px;
+    background-image: url("https://images.squarespace-cdn.com/content/v1/5b8cefd712b13f8a70cddd6c/1575979023951-P0RT0CUS05WDIQ3AOZ0T/ke17ZwdGBToddI8pDm48kMr7cO87uK4i5FGmPfgnAmJ7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0haypLsn6iFkXbd5QrnyzAHzxnA2Pnr_1Ly5Z0Of8AN2PL3ebnl0oVnm1pJVKrE9Rw/Scoffsapp+Website+Background.jpg?format=2500w");
+    background-position: center;
+    background-size: cover;
+}
+
+.site-navbar,
+.site-footer {
+    background-color: #087a2e;
+}
+
+.site-footer {
+    color: #fff;
+}
+
+.page-shell {
+    min-height: 60vh;
+}
+
+.page-shell img {
+    max-width: 100%;
+}
+
+.content-panel {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.slider,
+.app,
+.use,
+.advantages,
+.definitions {
+    background: #fff;
+    border-radius: 8px;
+    color: #1f2a24;
+    margin: 1rem 0;
+    padding: 1.5rem;
+}
+
+.advantages .col-sm-3 {
+    border-left: 1px solid #e1e8e3;
+}
+
+.advantages .col-sm-3:first-child {
+    border-left: 0;
+}
+
+.social ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.site-navbar .dropdown-menu {
+    min-width: 10rem;
+}
+
+.auth-box {
+    background: #fff;
+    border: 1px solid #d8ded9;
+    border-radius: 8px;
+    margin: 3rem auto;
+    max-width: 640px;
+    padding: 2rem;
+}
+
+.btn-icon {
+    align-items: center;
+    display: inline-flex;
+    gap: .45rem;
+}
+
+.page-title,
+.section-title,
+.favorite-title,
+.title-description,
+.title-history {
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state {
+    background: #fff;
+    border: 1px solid #d8ded9;
+    border-radius: 8px;
+    max-width: 720px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.post-card {
+    background: #fff;
+    border: 1px solid #d8ded9;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.post-card__image,
+.recipe-card__image,
+.popular-post__media img {
+    border-radius: 6px;
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.post-card__title,
+.recipe-card__title {
+    font-size: 1.55rem;
+    line-height: 1.2;
+    margin-bottom: .65rem;
+}
+
+.post-meta {
+    color: #607066;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .9rem;
+    gap: .75rem;
+    margin-bottom: .75rem;
+}
+
+.post-meta--stacked {
+    display: grid;
+    gap: .25rem;
+    margin-bottom: 0;
+}
+
+.news-sidebar {
+    position: sticky;
+    top: 1rem;
+}
+
+.popular-post {
+    border-top: 1px solid #e1e8e3;
+    display: grid;
+    gap: .75rem;
+    padding: 1rem 0;
+}
+
+.popular-post:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.popular-post__media img {
+    height: 150px;
+}
+
+.popular-post__title {
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: .35rem;
+}
+
+.empty-inline {
+    color: #6c757d;
+    margin: 0;
+    padding: 1rem 0;
+}
+
+.schedule-card {
+    background: #eef8f1;
+    border: 1px solid #cfe8d7;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.recipe-card,
+#recipe,
+.main-div {
+    background: #fff;
+    border-radius: 8px;
+    color: #1f2a24;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.recipe-card {
+    border: 1px solid #d8ded9;
+}
+
+.recipe-card__image {
+    height: 260px;
+}
+
+.recipe-meta {
+    color: #4e6256;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li + li {
+    border-top: 1px solid #e1e8e3;
+}
+
+.sidebar-link {
+    color: #1f2a24;
+    display: block;
+    font-weight: 600;
+    padding: .8rem .25rem;
+}
+
+.sidebar-link.active,
+.sidebar-link:hover {
+    color: #087a2e;
+}
+
+.pagination {
+    gap: .25rem;
+}
+
+.page-link {
+    border-radius: 6px;
+}
+
+.program-tip {
+    background: #fff;
+    border: 1px solid #d8ded9;
+    border-radius: 8px;
+    color: #1f2a24;
+    height: 100%;
+    padding: 1rem;
+}
+
+.program-cta {
+    background: #fff;
+    border-radius: 8px;
+    margin-top: 2rem;
+    padding: 1.5rem;
+}
+
+.metric-card {
+    background: #fff;
+    border: 1px solid #d8ded9;
+    border-radius: 8px;
+    color: #1f2a24;
+    height: 100%;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.content-container,
+.form-container,
+#detail-view,
+#container_detail,
+#his,
+#container-chart,
+.form,
+.snacks,
+.water,
+.info {
+    background: #fff;
+    border-radius: 8px;
+    color: #1f2a24;
+}
+
+.content-container {
+    margin: 0 auto;
+}
+
+.form-container,
+#detail-view,
+#container_detail,
+#his,
+.form,
+.snacks,
+.info {
+    padding: 1.5rem;
+}
+
+.form-calculator {
+    border-top: 1px solid #e1e8e3;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+#container_detail .title,
+.result-title,
+.title,
+.snack-title,
+.breakfast-title,
+.lunch-title,
+.dinner-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.nutrition_facts,
+.description,
+.ingredients,
+.step_by_step {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.favorite-section {
+    border-top: 1px solid #e1e8e3;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.breakfast,
+.lunch,
+.dinner {
+    background: #fff;
+    border: 1px solid #d8ded9;
+    border-radius: 8px;
+    color: #1f2a24;
+    display: inline-block;
+    margin: 1rem .5rem;
+    padding: 1.25rem;
+    vertical-align: top;
+    width: calc(33.333% - 1rem);
+}
+
+.program-tips-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.program-tips-grid .breakfast,
+.program-tips-grid .lunch,
+.program-tips-grid .dinner {
+    display: block;
+    height: 100%;
+    margin: 0;
+    width: auto;
+}
+
+.subscribe {
+    background: #eef8f1;
+    border-radius: 8px;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.water {
+    border: 1px solid #d8ded9;
+    display: inline-block;
+    margin: .75rem;
+    padding: 1.25rem;
+    text-align: center;
+    vertical-align: top;
+    width: calc(25% - 1.5rem);
+}
+
+.water button {
+    background: transparent;
+    border: 0;
+    color: #087a2e;
+}
+
+.index,
+.weight,
+.weight-value,
+.info-water-value {
+    color: #087a2e;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.card-deck {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1.5rem;
+}
+
+.card-deck .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+#profile_menu,
+#recipes_by_category {
+    background: #fff;
+    border-radius: 8px;
+    color: #1f2a24;
+    padding: 1rem;
+}
+
+#profile_menu ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#profile_menu .text-white {
+    color: #087a2e !important;
+}
+
+#recipes_by_category img {
+    height: 150px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.empty-notes {
+    background: #fff;
+    border-radius: 8px;
+    color: #607066;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+#container-chart {
+    padding: 1rem;
+}
+
+.metric-value {
+    border: 4px solid #30bf61;
+    border-radius: 999px;
+    display: grid;
+    font-size: 1.6rem;
+    font-weight: 700;
+    height: 140px;
+    margin: 1rem auto;
+    place-items: center;
+    width: 140px;
+}
+
+.icon-button {
+    background: transparent;
+    border: 0;
+    color: inherit;
+}
+
+.modal.is-open {
+    display: block;
+}
+
+.modal .modal-content {
+    margin: 15% auto;
+    max-width: 420px;
+    padding: 1.25rem;
+}
+
+.form-panel {
+    background: #fff;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 640px;
+    padding: 1.5rem;
+}
+
+@media (max-width: 991.98px) {
+    .site-hero {
+        min-height: 150px;
+    }
+
+    .news-sidebar {
+        position: static;
+    }
+
+    .breakfast,
+    .lunch,
+    .dinner,
+    .water {
+        display: block;
+        margin: 1rem 0;
+        width: 100%;
+    }
+
+    .program-tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-deck {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .page-shell {
+        padding-left: .75rem;
+        padding-right: .75rem;
+    }
+
+    .post-card__title,
+    .recipe-card__title {
+        font-size: 1.25rem;
+    }
+
+    .post-card__image,
+    .recipe-card__image {
+        height: 190px;
+    }
+
+    .post-meta {
+        display: grid;
+        gap: .25rem;
+    }
+}

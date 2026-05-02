@@ -2,63 +2,6 @@
 
 {% block content %}
 
-    <style>
-        .main-div {
-            background: #ffdc00;
-            width: 355px;
-            height: 250px;
-            padding: 10px;
-            margin: 40px;
-            opacity: 0.5;
-            display: inline-block;
-            border-radius: 10px;
-            position: relative;
-            color: white;
-        }
-
-        .buttons {
-            width: 340px;
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-            margin-bottom: 10px;
-
-        }
-
-        .main-div:hover {
-            opacity: 1;
-        }
-
-        #date {
-            font-family: "Noto Serif CJK KR";
-            font-size: 12px;
-        }
-
-        .form {
-            color: white;
-            width: 300px;
-            margin: 20px auto;
-            padding: 10px;
-            text-align: center;
-        }
-
-        label {
-            float: left;
-        }
-
-        input {
-            width: 100%;
-        }
-        .empty-notes{
-            margin-top: 40px;
-            text-align: center;
-            border-radius: 5px;
-            background-color: #f2f2f2;
-            font-size: 35px;
-            padding: 15px;
-        }
-    </style>
-
         {% for n in notes %}
             <div class="main-div">
 
@@ -93,8 +36,4 @@
                 <input type="submit" value="Add" class="btn btn-success">
             </form>
         </div>
-
-    <script>
-
-    </script>
 {% endblock %}

@@ -6,67 +6,6 @@
 
 
 {% block content %}
-    <!--Chart js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-            integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
-          integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous"/>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <style>
-        body {
-            background-color: #30BF61;
-        }
-
-        #his {
-            margin-top: 40px;
-            background-color: white;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        #chart {
-            margin-top: 30px;
-        }
-
-        .title-description {
-            font-weight: bold;
-            font-size: 34px;
-            color: white;
-            text-align: center;
-            text-shadow: 2px 2px gray;
-        }
-
-        .title-history {
-            font-weight: bold;
-            font-size: 34px;
-            color: gray;
-            text-align: center;
-            text-shadow: 2px 2px lightgray;
-        }
-
-        .add-button {
-            text-align: center;
-        }
-
-        #container-chart {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-        }
-    </style>
-    {% if messages %}
-        <div class="container text-center mt-2">
-
-            {% for message in messages %}
-                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} text-center"
-                     role="alert">
-                    <p>{{ message }}</p>
-                </div>
-            {% endfor %}
-
-        </div>
-    {% endif %}
     <div class="container">
         <div class="description text-center mt-5">
             <div class="title-description">Progress page</div>
@@ -81,9 +20,16 @@
                     {% for w in weight %}
                         <tr>
                             <td>{{ w.weight }} kg</td>
-                            <td>{{ w.created }}</td>
-                            <td><a href="{% url 'diets:delete' w.id %}"><i
-                                    class="fas fa-trash-alt ml-2"></i></a></td>
+                            <td>{{ w.date }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-danger" href="{% url 'diets:delete' w.id %}">
+                                    <i class="fas fa-trash-alt me-1" aria-hidden="true"></i>Delete
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">No weight entries yet.</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -121,32 +67,11 @@
         </div>
     </div>
 
-    <script>
-        var ctx = document.getElementById('myChart1').getContext('2d');
-        var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [{% for i in weight %}'{{ i.created.date }}',{% endfor %}],
-                datasets: [{
-                    fill: true,
-                    response: true,
-                    label: 'Weight: ',
-                    borderColor: 'rgb(102,205,0)',
-                    data: [{% for i in weight %}{{ i.weight }}, {% endfor %}]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'My weight during all the time'
-                },
-                legend: {
-                    display: false,
-                    labels: {
-                        fontColor: 'rgb(102,205,0)'
-                    }
-                }
-            }
-        });
-    </script>
+    {{ chart_labels|json_script:"chart-labels" }}
+    {{ chart_values|json_script:"chart-values" }}
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+    <script src="/static/js/weight-chart.js"></script>
 {% endblock %}

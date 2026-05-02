@@ -4,85 +4,111 @@
 {% block title %}Recipes{% endblock %}
 
 {% block content %}
+    <div class="row g-4 align-items-start">
+        <div class="col-lg-9">
 
-    <style>
+            <div class="main">
 
-        li {
-            list-style-type: none;
-        }
-
-
-        #recipe {
-            color: black;
-            background-color: white;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-        }
-
-    </style>
-    <div class="row">
-        <div class="col-sm-9">
-
-            <div class="main mt-5">
-
-                <form class="form-inline" method="GET" action="{% url 'recipes:search_recipes' %}">
-                    <input name="q" value="{{ request.GET.q }}" class="form-control mr-sm-2" type="search"
+                <form class="d-flex gap-2" method="GET" action="{% url 'recipes:search_recipes' %}">
+                    <input name="q" value="{{ request.GET.q }}" class="form-control me-sm-2" type="search"
                            placeholder="Enter title.." aria-label="Search">
-                    <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-success btn-icon my-2 my-sm-0" type="submit">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <span>Search</span>
+                    </button>
                 </form>
 
 
-                <br>
-                <h1>{% if category %}{{ category.name }}{% else %} Recipes {% endif %}</h1><br>
-                {% if result %}
+                <h1 class="page-title mt-4">{% if category %}{{ category.name }}{% else %}Recipes{% endif %}</h1>
+                {% if query %}
                     <p>{{ count }} results for {{ query }}</p>
                     {% for res in result %}
-                        <p><a href="{{ res.get_absolute_url }}">{{ res.title }}</a></p><br>
-                        <img class="img-thumbnail" src="{{ res.image.url }}"><br>
+                        <article class="recipe-card row g-3 align-items-center">
+                            <div class="col-md-7">
+                                <h2 class="recipe-card__title"><a href="{{ res.get_absolute_url }}">{{ res.title }}</a></h2>
+                                <p>{{ res.description|truncatechars:140 }}</p>
+                                <p class="recipe-meta mb-0">{{ res.calories }} ccal / 100g</p>
+                            </div>
+                            <div class="col-md-5">
+                                {% if res.image %}<img class="recipe-card__image" src="{{ res.image.url }}" alt="{{ res.title }}">{% endif %}
+                            </div>
+                        </article>
+                    {% empty %}
+                        <div class="empty-state">
+                            <h2>No recipes found</h2>
+                            <p>Try a different search phrase.</p>
+                        </div>
                     {% endfor %}
                 {% endif %}
 
-                {% for rec in recipes %}
-                    <div class="row" id="recipe">
-                        <div class="col-sm-6">
-                            <p style="font-size: 25px"><strong>{{ rec.title }}</strong></p>
+                {% if not query %}
+                    {% for rec in recipe_list %}
+                        <article class="recipe-card row g-3 align-items-center">
+                            <div class="col-md-7">
+                                <h2 class="recipe-card__title">{{ rec.title }}</h2>
 
-                            <p>{{ rec.description|truncatechars:100 }}<a href="{{ rec.get_absolute_url }}">Read more</a>
-                            </p>
-                            <p><strong>Amount of calories: {{ rec.calories }} ccal /100g</strong></p>
-                            <p>Protein: {{ rec.protein }}g /100g</p>
-                            <p>Carbohydrates: {{ rec.carbohydrates }}g /100g</p>
-                            <p>Fat: {{ rec.fat }}g /100g</p>
+                                <p>{{ rec.description|truncatechars:140 }} <a href="{{ rec.get_absolute_url }}">Read more</a>
+                                </p>
+                                <div class="recipe-meta">
+                                    <strong>{{ rec.calories }} ccal / 100g</strong>
+                                    <span>Protein: {{ rec.protein }}g</span>
+                                    <span>Carbs: {{ rec.carbohydrates }}g</span>
+                                    <span>Fat: {{ rec.fat }}g</span>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                {% if rec.image %}<img class="recipe-card__image" src="{{ rec.image.url }}" alt="{{ rec.title }}">{% endif %}
+                            </div>
+                        </article>
+                    {% empty %}
+                        <div class="empty-state">
+                            <h2>No recipes yet</h2>
+                            <p>Add recipes in admin or load the fixture.</p>
                         </div>
-                        <div class="col-sm-6">
-                            <img class="img-thumbnail"
-                                 src="{% if rec.image %}{{ rec.image.url }}{% else %}Sos{% endif %}"><br>
-                        </div>
-                    </div>
-                {% endfor %}
-
-                {{ r }}
+                    {% endfor %}
+                    {% if recipe_list.paginator.num_pages > 1 %}
+                        <nav aria-label="Recipes pagination">
+                            <ul class="pagination justify-content-center mt-4">
+                                <li class="page-item {% if not recipe_list.has_previous %}disabled{% endif %}">
+                                    <a class="page-link"
+                                       href="{% if recipe_list.has_previous %}?page={{ recipe_list.previous_page_number }}{% else %}#{% endif %}">
+                                        Prev
+                                    </a>
+                                </li>
+                                {% for num in recipe_list.paginator.page_range %}
+                                    <li class="page-item {% if recipe_list.number == num %}active{% endif %}">
+                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% endfor %}
+                                <li class="page-item {% if not recipe_list.has_next %}disabled{% endif %}">
+                                    <a class="page-link"
+                                       href="{% if recipe_list.has_next %}?page={{ recipe_list.next_page_number }}{% else %}#{% endif %}">
+                                        Next
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    {% endif %}
+                {% endif %}
 
             </div>
         </div>
-        <div class="col-sm-3">
-            <div class="sidebar mt-5 ">
+        <aside class="col-lg-3">
+            <div class="sidebar content-panel">
                 <ul>
-                    <li {% if not category %}{% endif %}>
-                        <a class="text-white" href="{% url 'recipes:recipes_list' %}">All</a>
+                    <li>
+                        <a class="sidebar-link {% if not category %}active{% endif %}" href="{% url 'recipes:recipes_list' %}">All</a>
                     </li>
 
-                    <hr>
                     {% for cat in categories %}
-                        <li {% if cat.slug == categoru.slug %}{% endif %}>
-                            <a class="text-white" href="{% url 'recipes:recipes_by' cat.slug %}">{{ cat.name }}</a>
+                        <li>
+                            <a class="sidebar-link {% if cat.slug == category.slug %}active{% endif %}"
+                               href="{% url 'recipes:recipes_by' cat.slug %}">{{ cat.name }}</a>
                         </li>
-                        <hr>
                     {% endfor %}
                 </ul>
             </div>
-        </div>
+        </aside>
     </div>
 
 

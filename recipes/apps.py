@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class HairstyleConfig(AppConfig):
+class RecipesConfig(AppConfig):
     name = 'recipes'

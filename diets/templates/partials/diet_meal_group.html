@@ -1,0 +1,21 @@
+<div class="content-panel h-100">
+    <h2 class="section-title">{{ title }}</h2>
+    {% if meals %}
+        <div class="list-group list-group-flush">
+            {% for meal in meals %}
+                <a class="list-group-item list-group-item-action"
+                   href="{% url 'recipes:recipe_detail' meal.recipe.id meal.recipe.slug %}">
+                    <div class="d-flex justify-content-between gap-3">
+                        <strong>{{ meal.recipe.title }}</strong>
+                        <span>{{ meal.recipe.calories }} ccal</span>
+                    </div>
+                    {% if meal.target_calories %}
+                        <small class="text-muted">Target: {{ meal.target_calories }} ccal</small>
+                    {% endif %}
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="empty-inline">No recipes matched this meal target.</p>
+    {% endif %}
+</div>

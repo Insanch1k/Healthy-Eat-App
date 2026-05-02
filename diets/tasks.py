@@ -1,72 +1,84 @@
-from django.template import Template, Context
-from django.core.mail import send_mail
-from django.contrib.auth import get_user_model
-from health.celery import app
-from diets.models import Diet
-from twilio.rest import Client
-from django.contrib.auth.models import User
-from celery.task import periodic_task
+from celery import shared_task
 from django.conf import settings
+from django.db import transaction
+
+from .models import ProgramSubscription, SmsDeliveryLog
+from .services import due_meal_logs
+from .sms import get_sms_client
 
 
-'''Module for define celery tasks'''
-
-#sending sms at the same time every day for each user
-
-
-REPORT_TEMPLATE_BREAKFAST = """
-MAKE BREAKFAST
-"""
-users = User.objects.all()
-
-diets = Diet.objects.all()
-
-'''Take all programs and send sms for each user who has diet'''
+def meal_reminder_body(log):
+    return (
+        f'Hi {log.subscription.subscriber.username}! '
+        f'Time for {log.get_meal_display().lower()}. '
+        'Do not forget to eat it.'
+    )
 
 
-@app.task
-def send_sms_breakfast():
-    for diet in diets:
-        print(diet.subscriber.profile.phone)
-        '''program = Diet.objects.filter(subscriber=user)
-        template = Template(REPORT_TEMPLATE_BREAKFAST)
-        message_to_broadcast = f'{diet.subscriber.profile.phone}!Time for making breakfast. Dont forget eat it!\n'
-                               f'{diet.breakfast_time}\n'
-        print(user.username)
-        client = Client(account_sid, auth_token)
-        message = client.messages.create(
-            body=message_to_broadcast,
-            from_='+12526240484',
-            to=diet.subscriber.profile.phone
-        )'''
-        print(diet.subscriber.profile.phone + ' BREAKFAST every 1 minute')
+def program_confirmation_body(subscription):
+    return (
+        f'Hello {subscription.subscriber.username}! '
+        f'You subscribed to {subscription.meal_plan.title}.\n'
+        f'Breakfast at {subscription.breakfast_time}\n'
+        f'Lunch at {subscription.lunch_time}\n'
+        f'Dinner at {subscription.dinner_time}\n'
+    )
 
 
-@app.task
-def send_sms_dinner():
-    for user in users:
-        program = Diet.objects.filter(subscriber=user)
-        template = Template(REPORT_TEMPLATE_BREAKFAST)
-        message_to_broadcast = f'{user.username}!Time for making dinner. Dont forget eat it!\n'
-        print(user.username)
-        client = Client(settings.account_sid, settings.auth_token)
-        message = client.messages.create(
-            body=message_to_broadcast,
-            from_='+12526240484',
-            to=user.profile.phone
+@shared_task(bind=True, max_retries=3, default_retry_delay=60)
+def send_sms_delivery_log(self, log_id):
+    if not settings.SMS_REMINDERS_ENABLED:
+        return {'status': 'disabled'}
+
+    log = SmsDeliveryLog.objects.select_related(
+        'subscription__subscriber__profile',
+        'subscription__meal_plan',
+    ).get(id=log_id)
+    try:
+        provider_sid = get_sms_client().send(
+            to=log.subscription.subscriber.profile.phone,
+            body=meal_reminder_body(log),
         )
-
-
-@app.task
-def send_sms_lunch():
-    for user in users:
-        program = Diet.objects.filter(subscriber=user)
-        template = Template(REPORT_TEMPLATE_BREAKFAST)
-        message_to_broadcast = f'{user.username}!Time for making lunch. Dont forget eat it!'
-        print(user.username)
-        client = Client(settings.account_sid, settings.auth_token)
-        message = client.messages.create(
-            body=message_to_broadcast,
-            from_='+12526240484',
-            to=user.profile.phone
+    except Exception as exc:
+        SmsDeliveryLog.objects.filter(id=log.id).update(
+            status=SmsDeliveryLog.FAILED,
+            error=str(exc),
         )
+        raise self.retry(exc=exc) from exc
+
+    SmsDeliveryLog.objects.filter(id=log.id).update(
+        status=SmsDeliveryLog.SENT,
+        provider_sid=provider_sid,
+        error='',
+    )
+    return {'status': SmsDeliveryLog.SENT, 'provider_sid': provider_sid}
+
+
+@shared_task
+def send_due_meal_reminders():
+    if not settings.SMS_REMINDERS_ENABLED:
+        return {'scheduled': 0, 'status': 'disabled'}
+
+    logs = due_meal_logs()
+    for log in logs:
+        transaction.on_commit(lambda log_id=log.id: send_sms_delivery_log.delay(log_id))
+    return {'scheduled': len(logs)}
+
+
+@shared_task(bind=True, max_retries=3, default_retry_delay=60)
+def send_program_confirmation(self, subscription_id):
+    if not settings.SMS_REMINDERS_ENABLED:
+        return {'status': 'disabled'}
+
+    subscription = ProgramSubscription.objects.select_related(
+        'subscriber__profile',
+        'meal_plan',
+    ).get(id=subscription_id)
+    try:
+        provider_sid = get_sms_client().send(
+            to=subscription.subscriber.profile.phone,
+            body=program_confirmation_body(subscription),
+        )
+    except Exception as exc:
+        raise self.retry(exc=exc) from exc
+    return {'status': SmsDeliveryLog.SENT, 'provider_sid': provider_sid}

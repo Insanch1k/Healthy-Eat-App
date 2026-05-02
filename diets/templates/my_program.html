@@ -3,235 +3,77 @@
 {% block title %}My program{% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
-    <style>
-        #container {
-            padding: 20px;
-        }
+    <div class="container py-5">
+        {% if not subscription %}
+            <section class="empty-state mx-auto">
+                <h1>No active program</h1>
+                <p>You do not have an active nutrition program yet.</p>
+                <a class="btn btn-success" href="{% url 'diets:calculator' %}">Open calculator</a>
+            </section>
+        {% else %}
+            <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 mb-4">
+                <div>
+                    <h1 class="page-title">{{ meal_plan.title }}</h1>
+                    <p class="text-muted mb-0">{{ meal_plan.description_of_diet }}</p>
+                </div>
+                <form method="POST" action="{% url 'diets:unsubscribe_program' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-danger" type="submit">Unsubscribe</button>
+                </form>
+            </div>
 
-        table tr {
-            text-align: right;
-        }
+            <section class="content-panel mb-4">
+                <h2 class="section-title">Meal schedule</h2>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="schedule-card">
+                            <span>Breakfast</span>
+                            <strong>{{ subscription.breakfast_time }}</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="schedule-card">
+                            <span>Lunch</span>
+                            <strong>{{ subscription.lunch_time }}</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="schedule-card">
+                            <span>Dinner</span>
+                            <strong>{{ subscription.dinner_time }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        body {
-            background-image: url("https://st4.depositphotos.com/1001092/22514/i/1600/depositphotos_225149288-stock-photo-asian-food-background.jpg");
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
+            <section class="row g-4">
+                <div class="col-lg-4">
+                    {% include "partials/diet_meal_group.html" with title="Breakfast" meals=meal_groups.breakfast %}
+                </div>
+                <div class="col-lg-4">
+                    {% include "partials/diet_meal_group.html" with title="Lunch" meals=meal_groups.lunch %}
+                </div>
+                <div class="col-lg-4">
+                    {% include "partials/diet_meal_group.html" with title="Dinner" meals=meal_groups.dinner %}
+                </div>
+            </section>
 
-        #diet {
-            background-color: white;
-            padding: 15px;
-        }
-
-        #bottom_nav {
-            padding: 10px;
-            margin-top: 20px;
-        }
-
-        #breakfast {
-            background-color: white;
-            width: 350px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        #lunch {
-            padding: 10px;
-            border-radius: 5px;
-            background-color: white;
-            width: 350px;
-        }
-
-        #dinner {
-            background-color: white;
-            width: 350px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        #meals {
-            padding: 10px;
-        }
-
-        .program_title {
-            font-weight: 900;
-            color: white;
-            font-style: normal;
-            font-size: 39px;
-            text-shadow: 3px 3px gray;
-        }
-
-        .program_description {
-            margin-top: 30px;
-            font-size: 20px;
-            color: gray;
-            font-style: italic;
-        }
-
-        .description_title {
-            font-weight: 900;
-            color: white;
-            font-style: normal;
-            font-size: 30px;
-            text-shadow: 3px 3px gray;
-        }
-
-        .breakfast-title, .dinner-title, .lunch-title, .snack-title {
-            color: white;
-            font-size: 34px;
-            text-align: center;
-        }
-
-        .snacks {
-            padding: 15px;
-            margin: 40px 40px;
-            background-color: #007f5f;
-            border-radius: 10px;
-            opacity: 0.8;
-        }
-
-        .desc {
-            background-color: #B9B9B9;
-            margin-bottom: 50px;
-            border-radius: 10px;
-            padding: 15px;
-            opacity: 0.8;
-            color: white;
-        }
-
-        .description{
-            color: white;
-            padding: 10px;
-            font-size: 34px;
-            text-align: center;
-
-        }
-
-    </style>
-    <div class="container">
+            <section class="content-panel mt-4">
+                <h2 class="section-title">Snack ideas</h2>
+                {% if snacks %}
+                    <div class="list-group list-group-flush">
+                        {% for snack in snacks %}
+                            <a class="list-group-item list-group-item-action d-flex justify-content-between"
+                               href="{% url 'recipes:recipe_detail' snack.id snack.slug %}">
+                                <span>{{ snack.title }}</span>
+                                <span>{{ snack.calories }} ccal</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="empty-inline">No snack recipes available yet.</p>
+                {% endif %}
+            </section>
+        {% endif %}
     </div>
-    <div class="container mt-5">
-        <div class="desc">
-            <div class="breakfast">
-                 <h3>Example of a meal schedule:</h3>
-                <div class="breakfast-title">Breakfast</div>
-                <h4>{{ my_diet.breakfast_time }}</h4>
-                <table class="table table-hover">
-                    <tr>
-                        <td>Green club sandwich</td>
-                        <td>100g</td>
-                    </tr>
-                </table>
-
-            </div>
-            <div class="snack">
-                <div class="lunch-title">Snack</div>
-                <table class="table table-hover">
-                    <tr>
-                        <td>Healthy Banana Bread</td>
-                        <td>100g</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="lunch">
-                <div class="lunch-title">Lunch</div>
-                <h4>{{ my_diet.lunch_time }}</h4>
-                <table class="table table-hover">
-                    <tr>
-                        <td>Pork Milanese with spaghetti</td>
-                        <td>100g</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="snack">
-                <div class="lunch-title">Snack</div>
-                <table class="table table-hover">
-                    <tr>
-                        <td>Almost-Raw Carrot Cake Bliss Balls</td>
-                        <td>100g</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="dinner">
-                <div class="dinner-title">Dinner</div>
-                <h4>{{ my_diet.dinner_time }}</h4>
-                <table class="table table-hover">
-                    <tr>
-                        <td>Pork with sweet & sour onion sauce</td>
-                        <td>100g</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-
-        <div class="d-sm-flex flex-row justify-content-between">
-            <div style="background-color: #007f5f" id="breakfast" class="p-2">
-                <div class="breakfast-title">Breakfast</div>
-                <table style="color:white;" class="table">
-                    {% for b in my_diet.breakfast.all %}
-                        <tr>
-                            <td><img src="{{ b.image.url }}" alt="{{ b.title }}" class="img-thumbnail"></td>
-                            <td>{{ b.calories }}ccal</td>
-                            <td><a href="{% url 'recipes:recipe_detail' b.id b.slug %}">Choose</a></td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <div style="background-color: #007f5f" class="p-2" id="lunch">
-                <div class="lunch-title">Lunch</div>
-                <table style="color:white;" class="table">
-                    {% for l in my_diet.lunch.all %}
-                        <tr>
-                            <td><img class="img-thumbnail" alt="{{ b.title }}" src="{{ l.image.url }}"></td>
-                            <td>{{ l.calories }}ccal</td>
-                            <td><a href="{% url 'recipes:recipe_detail' l.id l.slug %}">Choose</a></td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <div style="background-color: #007f5f" class="p-2" id="dinner">
-                <div class="dinner-title">Dinner</div>
-                <table style="color:white;" class="table">
-                    {% for d in my_diet.dinner.all %}
-                        <tr>
-                            <td><img class="img-thumbnail" src="{{ d.image.url }}"></td>
-                            <td>{{ d.calories }}ccal</td>
-                            <td><a href="{% url 'recipes:recipe_detail' d.id d.slug %}">Choose</a></td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </div>
-        <div class="snacks" style="color: white">
-            <div class="snack-title">Snacks</div>
-            <table class="table table-hover mt-3">
-                {% for snack in snacks  %}
-                    <tr>
-                        <td>{{ snack.title }}</td>
-                        <td>{{ snack.calories }}ccal</td>
-                        <td><a href="{% url 'recipes:recipe_detail' snack.id snack.slug %}">Choose</a></td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-
-
-    <div id="container" class="container">
-        <div class="container text-center" id="description">
-
-            <form method="POST" onsubmit='return confirm("Are you sure?")'>
-                {% csrf_token %}
-                <input class="btn btn-success" type="submit" value="Unsubscribe">
-            </form>
-
-        </div>
-    </div>
-
-    {% block scripts %}
-    {% endblock %}
 {% endblock %}

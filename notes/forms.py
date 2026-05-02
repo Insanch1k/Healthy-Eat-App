@@ -1,12 +1,11 @@
-from django import  forms
-from .models import Notes
+from django import forms
 
+from .models import Note
 
-'''Form for adding new notes'''
 
 class AddForm(forms.ModelForm):
     class Meta:
-        model = Notes
+        model = Note
         fields = ['title', 'body']
 
         widgets = {
@@ -17,5 +16,4 @@ class AddForm(forms.ModelForm):
                 'class': 'form-control', 'placeholder': 'body..'
             })
         }
-
 
